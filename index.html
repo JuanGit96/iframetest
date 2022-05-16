@@ -1,0 +1,1480 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap"
+          rel="stylesheet">
+</head>
+
+<body style="padding-top: 0px; background-color:#ffffff;margin:0;">
+<div id="braindw_Gondola" class="braindw-internal-container">
+    <style>section {
+        background: none;
+    }
+
+    #braindw_container {
+        margin: 0;
+        padding: 0;
+        line-height: 1.5;
+    }
+
+    #braindw_container .braindw_owl-carousel {
+        width: 60%;
+    }
+
+    #braindw_container section {
+        display: block;
+    }
+
+    #braindw_container .braindw_row {
+        flex-wrap: wrap;
+        margin: 0 auto;
+    }
+
+    #braindw_container .braindw_owl-carousel .braindw_item {
+        font-family: "Poppins", sans-serif !important;
+        margin: 5px;
+        padding: 10px;
+        background: #fff;
+        border: 1px solid #ddd;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #braindw_container .braindw_owl-carousel .braindw_item:hover {
+        z-index: 4;
+        transition: all .4s;
+        cursor: pointer;
+        -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .braindw_owl-carousel {
+        width: 100%;
+        z-index: 1
+    }
+
+    .braindw_owl-carousel, .braindw_owl-carousel .owl-item {
+        -webkit-tap-highlight-color: transparent;
+        position: relative
+    }
+
+    .braindw_owl-carousel .owl-stage {
+        position: relative;
+        -ms-touch-action: pan-Y;
+        touch-action: manipulation;
+        -moz-backface-visibility: hidden
+    }
+
+    .braindw_owl-carousel .owl-stage:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0
+    }
+
+    .braindw_owl-carousel .owl-stage-outer {
+        position: relative;
+        overflow: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        height: fit-content;
+    }
+
+    .braindw_owl-carousel .owl-item {
+        min-height: 1px;
+        float: left;
+        -webkit-backface-visibility: hidden;
+        -webkit-touch-callout: none
+    }
+
+    .braindw_owl-carousel.owl-loading {
+        opacity: 0;
+        display: block
+    }
+
+    .braindw_owl-carousel.owl-refresh .owl-item {
+        visibility: hidden
+    }
+
+    .braindw_owl-carousel.owl-drag .owl-item {
+        -ms-touch-action: pan-y;
+        touch-action: pan-y;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+    }
+
+    #braindw_container .braindw_columns {
+        display: flex;
+    }
+
+    #braindw_container .main-title {
+        font-family: "Poppins", sans-serif;
+        color: #5b5b5f;
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -.19px;
+        margin-right: 12px;
+        max-width: 500px;
+        font-size: 32px;
+        margin: 20px 10px;
+    }
+
+    #braindw_container .braindw_owl-carousel .braindw_item .braindw_main_container_mob_a {
+        width: 100%;
+        margin: 5px auto 10px;
+        position: relative;
+    }
+
+    #braindw_container .braindw_owl-carousel .braindw_item .braindw_main_container_mob_b {
+        margin-top: 0px;
+        width: 100%;
+    }
+
+    #braindw_container .braindw_prod {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #braindw_container .braindw_prod img {
+        width: 90%;
+        height: auto;
+        opacity: 1;
+    }
+
+    #braindw_container .product-item-badge {
+        pointer-events: none;
+        z-index: 1;
+        position: absolute;
+        top: 24px;
+        left: 0;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #braindw_container .product-item-badge > ul {
+        margin: 0;
+        padding: 0;
+        list-style: none none;
+        padding-bottom: 100%;
+        position: relative;
+    }
+
+    #braindw_container .product-item-badge > ul li {
+        list-style: none none;
+        top: 0px;
+        left: 0px;
+        z-index: 10;
+        position: absolute;
+        white-space: nowrap;
+        margin: 0;
+    }
+
+    #braindw_container .product-item-badge ul > li img {
+        max-height: 28px;
+        display: block;
+        vertical-align: middle;
+    }
+
+    #braindw_container .product-item-badgecombo {
+        pointer-events: none;
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 25px 0 25px 0;
+        padding: 0;
+    }
+
+    #braindw_container .product-item-badgecombo > ul {
+        margin: 0;
+        padding: 0;
+        list-style: none none;
+        padding-bottom: 100%;
+        position: relative;
+    }
+
+    #braindw_container .product-item-badgecombo > ul li {
+        list-style: none none;
+        top: 0px;
+        left: 0px;
+        z-index: 10;
+        position: absolute;
+        white-space: nowrap;
+        margin: 0;
+    }
+
+    #braindw_container .product-item-badgecombo ul > li img {
+        max-height: 28px;
+        display: block;
+        vertical-align: middle;
+    }
+
+    #braindw_container .product-item-badgecombo ul > li img.flag_cyber {
+        margin: 35px 0 0 0;
+    }
+
+    #braindw_container .product-item-badge {
+        pointer-events: none;
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #braindw_container .container-info {
+        margin: 5px 0 10px;
+        height: 61px;
+    }
+
+    #braindw_container .product-name {
+        font-size: 13px;
+        line-height: 17px;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 300;
+        max-height: 50px;
+        height: 50px;
+        text-decoration: none;
+        color: #5b5b5f;
+    }
+
+    #braindw_container .prices_content {
+        margin: 0;
+        height: 80px;
+    }
+
+    #braindw_container .prices_content .list_prices {
+        color: #999999;
+        margin: 0;
+        font-weight: 400;
+        font-size: 14px;
+        text-decoration: line-through;
+    }
+
+    #braindw_container .prices_content .pr_percentage {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center
+    }
+
+    #braindw_container .prices_content .best_price_reg {
+        color: #d27f45;
+        text-decoration: none;
+        font-size: 22px;
+        margin: 0;
+        font-weight: 400;
+        margin-right: 10px;
+    }
+
+    #braindw_container .prices_content .special-discount {
+        font-size: 14px;
+        line-height: 16px;
+        color: #333;
+        padding: 4px 11px;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: #e0ffc0;
+        border-radius: 20px;
+        white-space: nowrap;
+    }
+
+    #braindw_container .btn {
+        display: flex;
+        -webkit-align-items: center;
+        -ms-align-items: center;
+        align-items: center;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin: 10px 0 5px;
+    }
+
+    #braindw_container .btn input {
+        background-color: #f9f9fc;
+        width: 40px;
+        height: 35px;
+        font-size: 13px;
+        margin-right: 10px;
+        color: #5b5b5f;
+        text-align: center;
+        padding: 0;
+        border: 1px solid #ddd;
+        font-family: "Poppins";
+        outline: none;
+    }
+
+    #braindw_container .buyButton {
+        background: #d27f45;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 14px;
+        border-radius: 30px;
+        text-decoration: none;
+        flex-grow: 1;
+        padding: 8px 10px 10px;
+        width: auto;
+        text-align: center;
+    }
+
+    #braindw_container .buyButton.disabled {
+        opacity: .5;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    .braindw_owl-carousel .owl-next::after {
+        content: "";
+        height: 75px;
+        width: 75px;
+        background-image: url(https://storage.cdn.braindw.com/clubdebeneficios_produccion/script/files/2021/06/25/cb_next_1.png);
+        display: block;
+    }
+
+    .braindw_owl-carousel .owl-prev::after {
+        content: "";
+        height: 75px;
+        width: 75px;
+        background-image: url(https://storage.cdn.braindw.com/clubdebeneficios_produccion/script/files/2021/06/25/cb_prev_1.png);
+        display: block;
+    }
+
+    .braindw_owl-carousel .owl-next {
+        right: 10px;
+    }
+
+    .braindw_owl-carousel .owl-prev {
+        right: 90px;
+    }
+
+    .braindw_owl-theme .owl-nav {
+        text-align: center;
+        -webkit-tap-highlight-color: transparent;
+        margin-top: 10px;
+    }
+
+    .braindw_owl-theme .owl-nav [class*=owl-] {
+        cursor: pointer;
+        position: absolute;
+        top: -18%;
+        width: 75px;
+        height: 75px;
+        font-size: 0;
+        z-index: 1;
+        outline: none;
+        border: none;
+        background: transparent;
+    }
+
+    .bw_imagen_lateral_simple img {
+        margin: 5px 5px 0 5px;
+        height: 405px;
+    }
+
+    .braindw_blockEv {
+        position: absolute;
+        background-color: #F6F6F6;
+        z-index: 999;
+        height: 100%;
+        width: 100%;
+        opacity: 0.5;
+    }
+
+    .bt_vermas_mobile {
+        display: none;
+    }
+
+    #braindw_container .owl-dots {
+        display: block;
+        padding: 20px 0;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        z-index: 10;
+    }
+
+    button.owl-dot.active {
+        background: #D27F45
+    }
+
+    button.owl-dot {
+        background: #DDDDDD;
+        border: 0;
+        display: inline-block;
+        vertical-align: top;
+        margin: 0px 8px;
+        border-radius: 100%;
+        height: 10px;
+        width: 10px;
+        -webkit-transition: 0.3s all;
+        transition: 0.3s all;
+        padding: 0px;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 660px) {
+        .bw_imagen_lateral_simple {
+            display: none;
+        }
+
+        #braindw_container .braindw_owl-carousel {
+            width: 100%;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        .braindw_owl-theme .owl-nav {
+            display: none;
+        }
+
+        #braindw_container .owl-dots {
+            display: none;
+        }
+
+        #braindw_container .braindw_row {
+            width: 100%;
+            padding: 0;
+        }
+
+        .owl-dot {
+            text-align: center;
+        }
+
+        #braindw_container .prices_content .special-discount {
+            font-size: 12px;
+            padding: 1px 11px;
+        }
+
+        #braindw_container .main-title {
+            font-size: 20px;
+        }
+
+        #braindw_container .product-item-badge {
+            top: 16px
+        }
+    }
+
+    /*Cambio suma*/
+    #braindw_container .item-qty.input-qty-item {
+        font-size: 13px;
+        color: #5b5b5f;
+        text-align: center;
+        padding: 0;
+    }
+
+    #braindw_container .item-qty.input-qty-item {
+        text-align: center;
+        padding: 0;
+        background-color: #f9f9fc;
+        border-color: #dddddd;
+        width: 100px;
+        height: 35px;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid #d27f45;
+        border-bottom: 1px solid #d27f45;
+    }
+
+    #braindw_container .added .details-qty {
+        display: inline-flex;
+    }
+
+    #braindw_container .qty-control.qty-deduce {
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    #braindw_container .qty-control.qty-deduce {
+        border-radius: 45% 1% 1% 45%;
+    }
+
+    #braindw_container .qty-control.qty-add {
+        display: inline-block;
+        text-decoration: none;
+    }
+    #braindw_container .qty-control.qty-add {
+        border-radius: 1% 45% 45% 1%;
+    }
+
+    #braindw_container .qty-control {
+        display: block;
+        width: 40px;
+        height: 35px;
+        color: #FFF;
+        font-size: 20px;
+        line-height: 35px;
+        background: #D27F45;
+        -webkit-touch-callout: none;
+        user-select: none;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #braindw_container .action.tocart {
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        /*padding: 8px 10px 10px;*/
+        width: 180px;
+        border-radius: 25px;
+        background-image: none;
+        background: #d27f45;
+        border: 1px solid #d27f45;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        margin: 0;
+        /*font-size: 1.6rem;*/
+        line-height: 1.4rem;
+        box-sizing: border-box;
+        vertical-align: middle;
+        text-transform: none;
+        padding: 5px 0 5px;
+        font-size: 17px;
+    }
+
+    #braindw_container .enable_delete_button .qty-deduce:before {
+        content: "\f176";
+    }
+
+    #braindw_container .addtocart-qty-container.enable_delete_button .qty-deduce > span {
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    /* end Cambio suma*/
+
+    </style>
+</div>
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+function ClickEventUrl(data) {
+    console.log(data);
+    window.parent.postMessage("BraindwClickRedirectParent|" + data , '*');
+   }
+
+function braindwGetUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+function BraindwAddToCart(data,element) {
+    var urlToCart=data.split("|")[1];
+    var urlLink=data.split("|")[0].split("_")[0];
+    var sku= data.split("|")[0].split("_")[6];
+    console.log("skudatafromiframe->"+sku);
+    console.log("skudatafromiframe->"+urlToCart);
+    console.log("skudatafromiframe->"+urlLink);
+    var bdwAttrCat = 'banner';
+    var bdwAttrEti = 'default';
+    try {
+        bdwAttrCat = jQuery(element).attr('bw-section');
+    } catch (err) {}
+    try {
+        bdwAttrEti = jQuery(element).attr('bw-title');
+    } catch (err) {}
+
+    $(element).addClass('disabled');
+    $(element).text('Añadir');
+    setTimeout(function(){
+      $(element).removeClass('disabled');
+      $(element).text('Añadido');
+      $(element).text('Agregar');
+    },2000)
+    var quantity = $(element).closest('form').find('input').val();
+    var datasend=data.split("|")[0]+"_"+ quantity;
+    console.log(datasend);
+    window.parent.postMessage("BraindwEventAnalyticsBuy|"+ datasend , '*');
+    window.parent.postMessage("BraindwAddCartEvent|"+urlToCart+"," + sku +"," + quantity + "," + urlLink +"," + bdwAttrEti+"," + bdwAttrCat, '*');
+
+
+
+}
+
+var bdwMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (bdwMobile.Android() || bdwMobile.BlackBerry() || bdwMobile.iOS() || bdwMobile.Opera() || bdwMobile.Windows());
+    }
+};
+
+function BraindwBuildImage(config, orientation, mobile) {
+    var imageHtml = '';
+    if (config !== null && config !== undefined && config.floatImage.indexOf(orientation) > -1) {
+        var image = '',link, classImage='';
+        if (config.imagesObjects.length > 1 ) {
+            image = orientation === 'left' ? config.imagesObjects[0].url : config.imagesObjects[1].url;
+            link = orientation === 'left' ? config.imagesObjects[0].linkImg : config.imagesObjects[1].linkImg;
+            classImage='simple-doble'
+        }else{
+            image =config.imagesObjects[0].url;
+            link = config.imagesObjects[0].linkImg;
+            classImage = 'simple-doble-'+config.minus;
+        }
+
+        imageHtml = '<div class="bw_imagen_lateral_simple" data-minus="'+config.minus+'">'+
+            '<a href="'+link+'" target="_parent" bw-title="banner" bw-section="%sectionEvent%" bw-sku="" onclick="ClickEventUrl('+"'"+link+"'"+',this);return false;"><img class='+classImage+' src="'+image+'" style=""></a>'+
+            '</div>';
+    }
+
+    if (mobile && config !== null && config !== undefined) {
+        var link = config.imagesObjects[0].linkImg === '' && config.additionalComponent.value !== '' ?
+        config.additionalComponent.value :
+        config.imagesObjects[0].linkImg;
+
+        imageHtml = '<div class="bt_vermas_mobile"><a href="'+link+'" target="_parent" onclick="ClickEventUrl('+"'"+link+"'"+',this);return false;">Ver Todo</a></div>';
+    }
+
+    return imageHtml;
+}
+
+function BdwGondolaStyle(gondola_selector, slider_width, slider_padding, slider_float_side, margin, type) {
+    var headerStyle = '';
+    let cuca_top = '16px';
+    if (type === "header") {
+        cuca_top = bdwMobile.any() !== null ? '-16px':'16px';
+         headerStyle =
+         '#braindw_container div.braindw_row { width:92%;  }'+
+         '#braindw_container section{display:inline-block;}' +
+         '#braindw_container .braindw_owl-carousel .braindw_item{flex-direction: row !important;}' +
+         '#braindw_container .braindw_main_container_mob_a{width:50%;margin:0 !important;}' +
+         '#braindw_container .braindw_main_container_mob_b{width:50%;margin:0 !important;padding:10px 15px;}' +
+
+         '#braindw_container .braindw_prod{padding: 10px 0 0 0 !important;}' +
+         '#braindw_container .container-info{height:50px;}'+
+
+         '.braindw_owl-theme .owl-nav [class*=owl-]{top:30% !important;}'+
+         '.braindw_owl-theme .owl-nav{display:initial !important;}'+
+         '.braindw_owl-carousel .owl-next {right: -35px !important;}'+
+         '.braindw_owl-carousel .owl-prev{left: -35px !important;}'+
+         '#braindw_container .owl-dots {bottom: 0;text-align: center; display:block !important}' +
+         '#braindw_container .owl-dots .owl-dot {width: 0.8em;height: 0.8em;background: #ccc;display: inline-block;vertical-align: middle;margin: 0 5px; -webkit-border-radius: 100%; border-radius: 100%; padding:0; border: none;outline:none;cursor: pointer;}' +
+         '#braindw_container .owl-dots .owl-dot.active {background: #d27f45;border: none;outline:none;}' +
+         '#braindw_container .main-title {display:none;}' +
+         '#braindw_container .product-item-badge{left: 110px;}'+
+
+            '@media only screen and (max-width :480px){'+
+            '#braindw_container .braindw_owl-carousel .braindw_item{padding: 0 !important;}'+
+            '#braindw_container .braindw_owl-carousel .braindw_item .braindw_main_container_mob_b{display: flex;flex-direction: column;justify-content: center;}' +
+            '#braindw_container .prices_content{padding: 10px 0 !important;height: auto !important;}'+
+            '.braindw_owl-theme .owl-nav [class*=owl-]{display: none !important;}' +
+            '#braindw_container .product-name{max-height: 35px !important;height: 35px !important;}'+
+            '#braindw_container .btn{margin:0 0 10px !important;}'+
+            '#braindw_container .braindw_prod img{width:100% !important;}' +
+            '#braindw_container .product-item-badge{top: -16px;left: 5px !important;}'+
+            '#braindw_container .product-item-badgecombo{bottom:0;left:0;}'+
+            '#braindw_container .braindw_main_container_mob_a{width:40% !important;}' +
+            '#braindw_container .braindw_main_container_mob_b{width:60% !important;}' +
+
+            '}';
+    }
+
+    return '<style>' + headerStyle +
+     /*Sección Item*/
+     'section {background: none;}'+
+     '#braindw_container{margin:0;padding:0;line-height:1.5;} '+
+     '#braindw_container .braindw_owl-carousel{ width:'+slider_width+';'+margin+' }' +
+     '#braindw_container section{display:block;}' +
+     '#braindw_container .braindw_row{flex-wrap: wrap; margin: 0 auto;}' +
+     '#braindw_container .braindw_owl-carousel .braindw_item{font-family: "Poppins", sans-serif !important;margin: 5px;padding: 10px;background: #fff;border: 1px solid #ddd;height: 100%;display: flex;flex-direction: column;}' +
+     '#braindw_container .braindw_owl-carousel .braindw_item:hover{z-index: 4; transition: all .4s;cursor:pointer;-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);-ms-box-shadow: 0 0 5px rgba(0,0,0,0.2);box-shadow: 0 0 5px rgba(0,0,0,0.2);}' +
+     '.braindw_owl-carousel{width:100%;z-index:1}' +
+     '.braindw_owl-carousel,.braindw_owl-carousel .owl-item{-webkit-tap-highlight-color:transparent;position:relative}' +
+     '.braindw_owl-carousel .owl-stage{position:relative;-ms-touch-action:pan-Y;touch-action:manipulation;-moz-backface-visibility:hidden}' +
+     '.braindw_owl-carousel .owl-stage:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}' +
+     '.braindw_owl-carousel .owl-stage-outer{position:relative;overflow:hidden;-webkit-transform:translate3d(0,0,0);height: fit-content;}' +
+     '.braindw_owl-carousel .owl-item{min-height:1px;float:left;-webkit-backface-visibility:hidden;-webkit-touch-callout:none}' +
+     '.braindw_owl-carousel.owl-loading{opacity:0;display:block}' +
+     '.braindw_owl-carousel.owl-refresh .owl-item{visibility:hidden}' +
+     '.braindw_owl-carousel.owl-drag .owl-item{-ms-touch-action:pan-y;touch-action:pan-y;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}' +
+     '#braindw_container .braindw_columns { display: flex;}'+
+
+ /*Sección Contenedores*/
+     '#braindw_container .main-title {font-family: "Poppins", sans-serif;color: #5b5b5f;font-weight: 400;line-height: 1;letter-spacing: -.19px;margin-right: 12px;max-width: 500px;font-size: 32px;margin: 20px 10px;}' +
+     '#braindw_container .braindw_owl-carousel .braindw_item .braindw_main_container_mob_a{width: 100%; margin: 5px auto 10px; position: relative;}' +
+     '#braindw_container .braindw_owl-carousel .braindw_item .braindw_main_container_mob_b{margin-top:0px;width:100%;}' +
+
+ /*Sección a- imagen-cucardas*/
+     '#braindw_container .braindw_prod{display: flex;align-items: center;justify-content: center;}' +
+     '#braindw_container .braindw_prod img{width:90%;height: auto;opacity: 1;}' +
+
+     '#braindw_container .product-item-badge{pointer-events: none;z-index: 1;position: absolute;top: 24px;left: 0; height: 100%;margin: 0;padding: 0;}'+
+     '#braindw_container .product-item-badge>ul {margin: 0;padding: 0;list-style: none none;padding-bottom: 100%;position: relative;}'+
+     '#braindw_container .product-item-badge>ul li{list-style: none none;top: 0px;left: 0px;z-index: 10;position: absolute;white-space: nowrap;margin: 0;}'+
+     '#braindw_container .product-item-badge ul>li img{max-height: 28px;display: block;vertical-align: middle;}'+
+     '#braindw_container .product-item-badgecombo{pointer-events: none;z-index: 1;position: absolute;bottom: 0;left: 0;margin: 25px 0 25px 0;padding: 0;}'+
+     '#braindw_container .product-item-badgecombo>ul {margin: 0;padding: 0;list-style: none none;padding-bottom: 100%;position: relative;}'+
+     '#braindw_container .product-item-badgecombo>ul li{list-style: none none;top: 0px;left: 0px;z-index: 10;position: absolute;white-space: nowrap;margin: 0;}'+
+     '#braindw_container .product-item-badgecombo ul>li img{max-height: 28px;display: block;vertical-align: middle;}'+
+
+     '#braindw_container .product-item-badgecombo ul>li img.flag_cyber {margin: 35px 0 0 0;}'+
+     '#braindw_container .product-item-badge{pointer-events: none;z-index: 1;position: absolute;top: 0;left: 0; height: 100%;margin: 0;padding: 0;}'+
+ /*Sección Info*/
+     '#braindw_container .container-info{margin: 5px 0 10px;height:61px;}'+
+     '#braindw_container .product-name{font-size: 13px;line-height: 17px;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;font-weight: 300;max-height: 50px;height: 50px;text-decoration: none;color: #5b5b5f;}' +
+     '#braindw_container .prices_content{margin: 0; height: 80px;}' +
+     '#braindw_container .prices_content .list_prices{color: #999999;margin: 0;font-weight: 400;font-size: 14px;text-decoration: line-through;}' +
+     '#braindw_container .prices_content .pr_percentage{display: flex;flex-wrap: wrap;align-items: center}'+
+     '#braindw_container .prices_content .best_price_reg{color: #d27f45;text-decoration: none;font-size: 22px;margin: 0; font-weight: 400;margin-right: 10px;}' +
+     '#braindw_container .prices_content .special-discount{font-size: 14px;line-height: 16px;color: #333;padding: 4px 11px;display: inline-block;vertical-align: middle;background-color: #e0ffc0;border-radius: 20px;white-space: nowrap;}'+
+
+     '#braindw_container .btn{display: flex;-webkit-align-items: center;-ms-align-items: center;align-items: center;-webkit-flex-wrap: wrap;flex-wrap: wrap;margin: 10px 0 5px;}'+
+     '#braindw_container .btn input{background-color: #f9f9fc;width: 40px;height: 35px;font-size: 13px;margin-right: 10px;color: #5b5b5f;text-align: center;padding: 0;border: 1px solid #ddd;font-family:"Poppins";outline: none;}'+
+     '#braindw_container .buyButton {background: #d27f45;color: #fff;cursor: pointer;font-weight: 400;font-size: 14px;line-height: 14px;border-radius: 30px;text-decoration:none;flex-grow: 1;padding: 8px 10px 10px;width: auto;text-align: center;}'+
+     '#braindw_container .buyButton.disabled { opacity: .5; cursor: default; pointer-events: none; }'+
+
+ /*Sección Bullets-nav*/
+     '.braindw_owl-carousel .owl-next::after{content: "";height: 75px;width: 75px;background-image: url(https://storage.cdn.braindw.com/clubdebeneficios_produccion/script/files/2021/06/25/cb_next_1.png);display: block;}'+
+     '.braindw_owl-carousel .owl-prev::after{content: "";height: 75px;width: 75px;background-image: url(https://storage.cdn.braindw.com/clubdebeneficios_produccion/script/files/2021/06/25/cb_prev_1.png);display: block;}'+
+     '.braindw_owl-carousel .owl-next{right: 10px;}'+
+     '.braindw_owl-carousel .owl-prev{right: 90px;}'+
+     '.braindw_owl-theme .owl-nav{text-align:center;-webkit-tap-highlight-color:transparent;margin-top:10px;}'+
+     '.braindw_owl-theme .owl-nav [class*=owl-]{cursor: pointer;position: absolute;top: -18%;width: 75px;height: 75px;font-size: 0;z-index: 1;outline: none;border: none;background: transparent;}' +
+
+     '.bw_imagen_lateral_simple img{ margin: 5px 5px 0 5px; height:405px;}'+
+     '.braindw_blockEv { position: absolute;background-color: #F6F6F6;z-index: 999;height: 100%;width: 100%;opacity: 0.5; }'+
+     '.bt_vermas_mobile { display: none;}'+
+     '#braindw_container .owl-dots { display: block;padding: 20px 0;position: relative;text-align: center;width: 100%;left: 0;bottom: 0;z-index: 10; }'+
+     'button.owl-dot.active { background: #D27F45 }'+
+     'button.owl-dot{background: #DDDDDD;border: 0;display: inline-block;vertical-align: top;margin: 0px 8px;border-radius: 100%;height: 10px;width: 10px;-webkit-transition: 0.3s all;transition: 0.3s all;padding: 0px; cursor: pointer;}'+
+
+     '@media only screen and (max-width :660px){'+
+        '.bw_imagen_lateral_simple { display: none; } '+
+        '#braindw_container .braindw_owl-carousel { width:100%; }'+
+     '}'+
+ /*Sección @media*/
+     '@media only screen and (max-width :480px){'+
+         '.braindw_owl-theme .owl-nav{display: none;}'+
+         '#braindw_container .owl-dots {display: none;}'+
+         '#braindw_container .braindw_row{width: 100%; padding: 0;}' +
+         '.owl-dot{text-align:center;}' +
+         '#braindw_container .prices_content .special-discount{font-size: 12px;padding: 1px 11px;}'+
+         '#braindw_container .main-title { font-size: 20px; }'+
+         '#braindw_container .product-item-badge{top: '+cuca_top+'}'+
+     '}' +
+    '</style>';
+}
+
+function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, linkBoton, type) {
+    if (data !== null && data.length > 0) {
+
+        var hash = {};
+        data = data.filter(function(current) {
+          var exists = !hash[current.IdArticulo];
+          hash[current.IdArticulo] = true;
+          return exists;
+        });
+
+        var url = braindwGetUrlParameter('url_parent');
+        data = data.filter(function (n) { return decodeURI(url).indexOf(n.Link) ===-1 && n.Precio !== "0"; });
+        var bdwIsLogged = braindwGetUrlParameter('isLogged');
+
+        if (data.length === 0) { return ''; }
+        if (type === "header" && data.length === 1) { return '';}
+
+        var minus = configs !== null ? configs.minus : 0;
+        var buttonLink = '';
+
+        if (linkBoton !== null && linkBoton !== undefined && linkBoton !== '' &&linkBoton !== '<%TEMPLATE_LINK_BOTON%>') {
+            buttonLink = '<a href="'+linkBoton+'" target="_parent" onclick="ClickEventUrl('+"'"+linkBoton+"'"+',this);return false;">Ver todo</a>';
+        }
+        var key = "bdw-clicked-products";
+        var titleAlert = type === "header" ? '' : '';
+        var divHeader = type === "header" && bdwMobile.any() !== null ? '<div style="display:flex;height:195px;align-items: center;"> ' : '';
+        var divEndHeader = type === "header" && bdwMobile.any() !== null ? '</div> ' : '';
+        var displayTitle =  title !== '' ? 'visible' : 'hidden';
+        var shelfname=title;
+        var templateBigBannerCategoria =
+            '<section id="braindw_container">' +
+                '<div class="braindw_blockEv" style="display:none"></div>'+
+                '<div class="braindw_row">' +
+                '<div class="main-title" style="visibility:'+displayTitle+'"><span>' + title + '</span></div>' +
+                '<div class="braindw_columns">' +
+                    //imagen lateral
+                    BraindwBuildImage(configs, 'left')+
+                //imagen lateral
+                    '<div class="braindw_owl-carousel braindw_owl-theme ' + gondola + ' bdwtemplate-'+minus+'">';
+
+        var itemtemplateBigBannerCategoria =
+            '<div class="braindw_item" data-id="%idArticulo%" style="opacity:%opacityStock%">' +
+                divHeader+
+
+                '<section class="braindw_main_container_mob_a">' +
+                    '<div class="product-item-badge" style="visibility:%visibility_cucanocombo%">'+
+                        '<ul>'+
+                            '<li>'+
+                                '<img src="%CucardaUrlImage%" class="%cucacyber%">'+
+                            '</li>'+
+                        '</ul>'+
+                    '</div>' +
+                    '<div class="product-item-badgecombo" style="visibility:%visibility_cucacombo%">'+
+                        '<ul>'+
+                            '<li>'+
+                                '<img src="%CucardaUrlImageExterna%" >'+
+                            '</li>'+
+                        '</ul>'+
+                    '</div>' +
+
+                    '<a href="%link%" onclick="ClickEventUrl(\'%data%\',this);return false;" class="braindw_prod _braindwTriggerClick" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">' +
+                        '<img src="%urlImage%">'+
+                    '</a>' +
+                '</section>' +
+
+                '<section class="braindw_main_container_mob_b">' +
+                    '<div class="prices_content" style="display:%visibility_price%">' +
+                        '<div class="list_prices" style="visibility:%precioAnterio_visibility%;">%PrAnt%</div>'+
+                        '<div class="pr_percentage">'+
+                            '<div class="best_price_reg">%Precio%</div>' +
+                            '<span class="special-discount" style="visibility:%display_cuca%">%CucardaOferta%</span>'+
+                        '</div>'+
+                    '</div>' +
+
+                    '<div class="container-info">'+
+                        '<a href="%link%" onclick="ClickEventUrl(\'%data%\',this);return false;" class="product-name" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">%Descripcion%</a>' +
+                    '</div>'+
+                    '<form class="btn" style="display:%display_view%">'+
+                        '<a href="%link%" onclick="ClickEventUrl(\'%data%\',this);return false;" class="buyButton" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">Ver Producto</a>'+
+                    '</form>'+
+                    '<!--Cambio summa-->'+
+                    '<!--<form class="btn" style="display:%display_addCart%">'+
+                        '<input type="text" min="1" value="1" tabindex="0">'+
+                        '<a onclick="BraindwAddToCart(\'%cart_data%\',this);return false;" class="buyButton action tocart primary" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">Agregar</a>'+
+                        '</form>-->'+
+                    '<form>'+
+                        '<div class="addtocart-qty-container added" align="center">'+
+                            '<div class="details-qty qty quantity-control-initialized">'+
+                                '<a class="qty-control qty-deduce" tabindex="0">'+
+                                    '<span>-</span>'+
+                                '</a>'+
+                                '<input value="1" type="number" size="4" min="1" class="item-qty input-qty-item" id="" tabindex="0">'+
+                                '<a class="qty-control qty-add"><span>+</span></a>'+
+                            '</div>'+
+                            '<button type="submit" title="Agregar" class="action tocart border" tabindex="0">'+
+                                '<span class="desktop-hide">Agregar</span>'+
+                            '</button>'+
+                        '</div>'+
+                    '</form>'+
+                    '<!--end Cambio summa-->'+
+                '</section>' +
+                divEndHeader+
+            '</div>';
+
+
+        $.each(data, function(i, item) {
+
+            if (bdwMobile.any() !== null && i >= 10) {
+                return;
+            }
+
+            var customLink = item.Link;
+            var citem = itemtemplateBigBannerCategoria
+            citem = citem.replace("%brand%", item.Marca);
+            citem = citem.replace(/%Descripcion%/g, item.Descripcion);
+            citem = citem.replace(/%idArticulo%/g, item.IdArticulo);
+            citem = citem.replace(/%TitleEvent%/g, item.Descripcion);
+
+            citem = citem.replace(/%opacityStock%/g, '');
+            citem = citem.replace(/%displayAgotado%/g, 'none');
+            citem = citem.replace(/%displayAddCart%/g,  'block');
+            citem = citem.replace(/%displayQuantity%/g, 'none');
+            citem = citem.replace("%urlImage%", item.UrlImagen);
+            citem = citem.replace(/%link%/g, customLink);
+            citem = citem.replace(/%sectionEvent%/g, eventName);
+            citem = citem.replace(/%sku%/g, item.Sku);
+            citem = citem.replace(/%CucardaOferta%/g, item.CucardaOferta);
+            if (!item.CucardaOferta) {
+                citem = citem.replace(/%display_cuca%/g, 'hidden');
+            }else{
+                citem = citem.replace(/%display_cuca%/g, 'visible');
+            }
+            if (bdwIsLogged === 'true') {
+                citem = citem.replace(/%visibility_price%/g, 'initial');
+                var price = item.Precio.indexOf(',') > -1 ?
+                    item.Precio.split(',')[0] :
+                    item.Precio;
+                citem = citem.replace(/%Precio%/g, price);
+
+                if (item.PrecioAnterior != '') {
+                    var priceAnterior = item.PrecioAnterior.indexOf(',') > -1 ?
+                        item.PrecioAnterior.split(',')[0] :
+                        item.PrecioAnterior;
+                    citem = citem.replace(/%PrAnt%/g, priceAnterior);
+                    citem = citem.replace(/%precioAnterio_visibility%/g, bdwMobile.any() ? "visible" : "visible");
+                } else {
+                    citem = citem.replace(/%precioAnterio_visibility%/g, "hidden");
+                }
+
+                citem = citem.replace(/%display_addCart%/g, 'flex');
+                citem = citem.replace(/%display_view%/g, 'none');
+            }else{
+                citem = citem.replace(/%display_view%/g, 'flex');
+                citem = citem.replace(/%display_addCart%/g, 'none');
+            }
+
+            citem = citem.replace(/%visibility_price%/g, 'none');
+            citem = citem.replace(/%linkToCart%/g, item.addToCart);
+
+            var data=customLink+'_'+key+'_'+item.IdArticulo+'_'+eventName+'_'+item.Descripcion+'_'+shelfname+'_'+item.Sku+'_'+item.Marca+'_'+i+'_'+price;
+            citem = citem.replace(/%data%/g, data);
+
+            var cart_data=customLink+'_'+key+'_'+item.IdArticulo+'_'+eventName+'_'+item.Descripcion+'_'+shelfname+'_'+item.Sku+'_'+item.Marca+'_'+i+'_'+price+'|'+item.addToCart;
+            citem = citem.replace(/%cart_data%/g, cart_data);
+
+            if(item.Image_CucardaUrlImageExterna){
+                citem = citem.replace(/%CucardaUrlImageExterna%/g, item.Image_CucardaUrlImageExterna);
+                citem = citem.replace(/%visibility_cucacombo%/g, 'visible');
+
+                if(item.Image_CucardaUrlImage){
+                    citem = citem.replace(/%CucardaUrlImage%/g, item.Image_CucardaUrlImage);
+                    citem = citem.replace(/%visibility_cucanocombo%/g, 'visible');
+                    if (item.Image_CucardaUrlImage.indexOf('Artboard_7') > -1) {
+                        citem = citem.replace(/%cucacyber%/g, 'flag_cyber');
+                    }
+                    citem = citem.replace(/%cucacyber%/g, '');
+                }else{
+                    citem = citem.replace(/%visibility_cucanocombo%/g, 'hidden');
+                }
+            }else{
+                citem = citem.replace(/%CucardaUrlImageExterna%/g, "");
+                citem = citem.replace(/%visibility_cucacombo%/g, 'hidden');
+                if(item.Image_CucardaUrlImage){
+                    citem = citem.replace(/%CucardaUrlImage%/g, item.Image_CucardaUrlImage);
+                    citem = citem.replace(/%visibility_cucanocombo%/g, 'visible');
+
+                    if (item.Image_CucardaUrlImage.indexOf('Artboard_7') > -1) {
+                        citem = citem.replace(/%cucacyber%/g, 'flag_cyber');
+                    }
+                    citem = citem.replace(/%cucacyber%/g, '');
+                }else{
+                    citem = citem.replace(/%CucardaUrlImage%/g, "");
+                    citem = citem.replace(/%visibility_cucanocombo%/g, 'hidden');
+                }
+            }
+
+
+
+            templateBigBannerCategoria = templateBigBannerCategoria + citem;
+        });
+
+        templateBigBannerCategoria = templateBigBannerCategoria + '</div>'+ BraindwBuildImage(configs, 'right')+'</div>'+ BraindwBuildImage(configs, '', true)+'</div></div></section>';
+        templateBigBannerCategoria = templateBigBannerCategoria + '</div>';
+        templateBigBannerCategoria = templateBigBannerCategoria.replace(/%sectionEvent%/g, eventName);
+
+        try {
+            if (configs != undefined && configs != null) {
+                templateBigBannerCategoria += BdwGondolaStyle(gondola, configs.sliderWidth, configs.sliderPadding, configs.sliderFloatSide, configs.margin,type);
+            } else {
+                templateBigBannerCategoria += BdwGondolaStyle(gondola, '100%', '', 'initial','',type);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+
+        return templateBigBannerCategoria;
+    }
+
+    return "";
+}
+
+function braindwStartCarousel(gondola, numberOfItems, marginRight) {
+    numberOfItems = numberOfItems === undefined ? 5 : numberOfItems;
+    marginRight = marginRight === undefined ? 10 : marginRight;
+    var items = jQuery('.' + gondola+ ' .braindw_item').length;
+
+    var itemsMinus = 0;
+
+    jQuery('.' + gondola).owlCarousel({
+        margin: marginRight,
+        loop: items > 4,
+        nav: true,
+        dots: true,
+        rewind: false,
+        responsive: {
+            0: {
+                items: 2,
+                nav: true,
+            },
+            480: {
+                items: 2,
+            },
+            668: {
+                items: numberOfItems - 2,
+            },
+            800:{
+                items: numberOfItems - 1,
+            },
+            1200: {
+                items: numberOfItems,
+
+            }
+        },
+        onResized: function(event){
+            var img = $('.' + gondola).closest('.braindw_columns').find('.bw_imagen_lateral_simple img');
+            img.css('height',img.css('height',$('#' + gondola).find('.owl-stage-outer').height()));
+        }
+    });
+
+    setTimeout(function(){
+        try{
+            $('.owl-loaded').trigger('refresh.owl.carousel');
+        }
+        catch(e){
+            console.log(e);
+        }
+    },800);
+}
+
+function braindwStartHeader(gondola, numberOfItems, marginRight) {
+    numberOfItems = numberOfItems === undefined ? 5 : numberOfItems;
+    marginRight = marginRight === undefined ? 10 : marginRight;
+    var items = jQuery('.' + gondola+ ' .braindw_item').length;
+
+    var itemsMinus = 0;
+    if ($('.bw_imagen_lateral_simple').length > 0) {
+    itemsMinus = parseInt($('.bw_imagen_lateral_simple').data('minus'));
+    }
+
+    jQuery('.' + gondola).owlCarousel({
+        margin: marginRight,
+        loop: items > 2,
+        nav: true,
+        dots: false,
+        rewind: false,
+        autoplay: false,
+        autoplayTimeout: 5300,
+        autoplaySpeed: 1700,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {
+                items: 1,
+                dots: false,
+                nav: true,
+            },
+            600: {
+                items: 2
+            }
+        },
+        onResized: function(event){
+            var img = $('.' + gondola).closest('.braindw_columns').find('.bw_imagen_lateral_simple img');
+            img.css('height',img.css('height',$('#' + gondola).find('.owl-stage-outer').height()));
+        },
+        onInitialized:function(event){
+        }
+    });
+
+    setTimeout(function(){
+        try{
+            $('.owl-loaded').trigger('refresh.owl.carousel');
+        }
+        catch(e){
+            console.log(e);
+        }
+    },800);
+}
+
+function BdwBuildConfigObject(idTemplateConfig, paramsConfig) {
+    var bdwTemplateConfig = {};
+    var differentGroups = [];
+    for (var i = 0; i < paramsConfig.length; i++) {
+        var keysConfig = Object.entries(paramsConfig[i]);
+        for (var j = 0; j < keysConfig.length; j++) {
+            if (keysConfig[j][0] == "group" && !differentGroups.includes(keysConfig[j][1])) {
+                if (keysConfig[j][1] != "undefined") {
+                    differentGroups.push(keysConfig[j][1]);
+                }
+            }
+
+        }
+    }
+
+    var valuesImageGeneral = {};
+    switch (idTemplateConfig) {
+        case '0001': {
+            bdwTemplateConfig = {
+                sliderWidth: '80.5%',
+                sliderFloatSide: 'right',
+                sliderPadding: '',
+                carouselItemsNum: 4,
+                carouselItemsMargin: 10,
+                margin: '',
+                minus: 1
+            };
+            valuesImageGeneral = {
+                width: '23%',
+                marginSide: ['margin-right: 0'],
+                floatImage: ['left']
+            };
+            break;
+        }
+        case '0002': {
+            bdwTemplateConfig = {
+                sliderWidth: '80.5%',
+                sliderFloatSide: 'left',
+                sliderPadding: 'margin-right:15px',
+                carouselItemsNum: 4,
+                carouselItemsMargin: 10,
+                margin: '',
+                minus: 1
+            };
+            valuesImageGeneral = {
+                width: '23%',
+                marginSide: ['margin: 0 0 0 10px'],
+                floatImage: ['right']
+            };
+            break;
+        }
+        case '0003': {
+            bdwTemplateConfig = {
+                sliderWidth: '60%',
+                navigationContainerWidth: '49.5%',
+                sliderFloatSide: 'left',
+                sliderPadding: 'margin-right:15px',
+                navArrowMargin: 'margin-right: -1%',
+                carouselItemsNum: 3,
+                carouselItemsMargin: 10,
+                margin: '',
+                minus: 2
+            };
+            valuesImageGeneral = {
+                width: '23%',
+                marginSide: ['margin: 0 0 0 10px'],
+                floatImage: ['left', 'right']
+            };
+            break;
+        }
+        case '0004': {
+            bdwTemplateConfig = {
+                sliderWidth: '60%',
+                sliderFloatSide: 'left',
+                sliderPadding: '',
+                carouselItemsNum: 3,
+                carouselItemsMargin: 10,
+                margin: '',
+                minus: 2
+            };
+            valuesImageGeneral = {
+                width: '35%',
+                marginSide: ['margin: 0 0 0 10px'],
+                floatImage: ['left']
+            };
+            break;
+        }
+        case '0005': {
+            bdwTemplateConfig = {
+                sliderWidth: '60%',
+                sliderFloatSide: 'left',
+                sliderPadding: 'margin-right:15px',
+                carouselItemsNum: 3,
+                carouselItemsMargin: 10,
+                margin: '',
+                minus: 2
+            };
+            valuesImageGeneral = {
+                width: '35%',
+                marginSide: ['margin: 0 0 0 10px'],
+                floatImage: ['right']
+            };
+            break;
+        }
+    }
+
+    var imagesObjects = [];
+    for(var k=0; k<differentGroups.length; k++){
+        var group = differentGroups[k];
+        var linkData = paramsConfig.filter(function(value){
+            return value.group == group && value.type == "link";
+        });
+        var imgUrlData = paramsConfig.filter(function(value){
+            return value.group == group && value.type == "img";
+        });
+        imagesObjects.push({
+            url: imgUrlData[0].value,
+            linkImg: linkData[0].value,
+            width: valuesImageGeneral.width,
+        });
+    }
+
+    bdwTemplateConfig.floatImage = valuesImageGeneral.floatImage;
+    bdwTemplateConfig.imagesObjects = imagesObjects;
+
+    bdwTemplateConfig.titleLeft = paramsConfig.filter(function(value) {
+        return value.key == "title1";
+    });
+
+    bdwTemplateConfig.titleLeft = bdwTemplateConfig.titleLeft != null ? bdwTemplateConfig.titleLeft[0] : null;
+
+    bdwTemplateConfig.titleRight = paramsConfig.filter(function(value) {
+        return value.key == "title2";
+    });
+
+    bdwTemplateConfig.titleRight = bdwTemplateConfig.titleRight != null ? bdwTemplateConfig.titleRight[0] : null;
+
+    return bdwTemplateConfig;
+}
+ var braindwgondola7_resultJson = { 'id':'0005','title':'', 'settings':[{'key':'title1','type':'text','value':'Combos en Caja','group':'undefined'},{'key':'image','type':'img','value':'https://storage.cdn.braindw.com/clubdebeneficios_produccion/script/files/2022/03/21/CdbBrainwdcomboencajas.jpg','group':'1'},{'key':'url','type':'link','value':'https://clubdebeneficios.com/combos/combos-por-caja.html','group':'1'},]};var bdwJsonResult=[{"Attr":null,"IdArticulo":"54","Sku":"2721","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/bee9b0fe48819553faba103d5513fcf9/c/d/cdb-combo_caja_ala_3l_2x-100.jpg","Descripcion":"Caja x 4 Jabón Líquido Ala Doypack 3 lt","Precio":"$2.402,40","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$2.402,40","PrecioAnterior":"$4.004,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"40% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/caja-x-4-jabon-liquido-ala-doypack-3-lt-2021.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"1","Added":"1018","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9jdWlkYWRvLWRlLWxhLXJvcGEvamFib25lcy1wYXJhLXJvcGEuaHRtbD9wPTEmcHJvZHVjdF9saXN0X2xpbWl0PTY0/product/2721/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null},{"Attr":null,"IdArticulo":"446","Sku":"5376","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/aeb45d6a4c340a462a5f781b444a41fa/c/d/cdb-caja_jabones_mix.._2x-100.jpg","Descripcion":"Caja Jabón Dove Micelar x6 un + Jabón Dove Revigorizante x6 un","Precio":"$983,40","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$983,40","PrecioAnterior":"$1.788,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"45% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/combo-jabon-dove-micelar-x6-unid-jabon-dove-revigorizante-x6-unid.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"2","Added":"60","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9jYXRhbG9nc2VhcmNoL3Jlc3VsdC8_cT00NDY%2C/product/5376/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null},{"Attr":null,"IdArticulo":"528","Sku":"6051","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/bee9b0fe48819553faba103d5513fcf9/c/d/cdb-stock_cocina_2x-100.jpg","Descripcion":"Combo Cif Cocina Impecable","Precio":"$3.474,80","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$3.474,80","PrecioAnterior":"$4.964,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"30% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/combo-cif-cocina-impecable.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"2","Added":"27","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9saW1waWV6YS9jb21ib3MtZGUtbGltcGllemEuaHRtbD9wPTEmcHJvZHVjdF9saXN0X2xpbWl0PTY0/product/6051/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null},{"Attr":null,"IdArticulo":"520","Sku":"6027","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/aeb45d6a4c340a462a5f781b444a41fa/c/d/cdb-stock_dove_2x-100.jpg","Descripcion":"Combo Stockeo Dove","Precio":"$3.609,60","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$3.609,60","PrecioAnterior":"$6.016,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"40% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/combo-stockeo-dove.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"2","Added":"22","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9jYXRhbG9nc2VhcmNoL3Jlc3VsdC8_cT0yODI%2C/product/6027/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null},{"Attr":null,"IdArticulo":"447","Sku":"5379","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/aeb45d6a4c340a462a5f781b444a41fa/c/d/cdb-caja_jabones_mix._2x-100.jpg","Descripcion":"Caja Jabón Dove Coco x6 unid. + Jabón Dove Energizante x6 unid","Precio":"$983,40","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$983,40","PrecioAnterior":"$1.788,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"45% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/combo-jabon-dove-energizante-x6-un-jabon-dove-energizante-x6-un.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"1","Added":"19","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9jYXRhbG9nc2VhcmNoL3Jlc3VsdC8_cT00NDc%2C/product/5379/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null},{"Attr":null,"IdArticulo":"398","Sku":"5358","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/bee9b0fe48819553faba103d5513fcf9/c/d/cdb-caja-sedal_2_2x-100.jpg","Descripcion":"Caja Sedal 2 Shampoo + 2 Acondicionadores  Ácido Hialurónico + Vitamina 650 ml","Precio":"$1.372,80","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$1.372,80","PrecioAnterior":"$2.112,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"35% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/combo-sedal-2-shampoo-2-acondicionadores-acido-hialuronico-vitamina-650-ml.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"1","Added":"12","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9jb21ib3MvY29tYm9zLWRlLXBlcmZ1bWVyaWEuaHRtbD9wPTEmcHJvZHVjdF9saXN0X2xpbWl0PTY0/product/5358/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null},{"Attr":null,"IdArticulo":"527","Sku":"6048","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/bee9b0fe48819553faba103d5513fcf9/c/d/cdb-stock_ban_o_2x-100.jpg","Descripcion":"Combo Cif Baño","Precio":"$3.432,10","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$3.432,10","PrecioAnterior":"$4.903,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"30% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/combo-ba-o.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"1","Added":"11","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9saW1waWV6YS9jb21ib3MtZGUtbGltcGllemEuaHRtbD9wPTEmcHJvZHVjdF9saXN0X2xpbWl0PTY0/product/6048/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null},{"Attr":null,"IdArticulo":"524","Sku":"6039","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/bee9b0fe48819553faba103d5513fcf9/c/d/cdb-stock_rexona_2x-100.jpg","Descripcion":"Combo Stockeo Rexona","Precio":"$3.518,40","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$3.518,40","PrecioAnterior":"$5.864,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"40% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/combo-stockeo-rexona.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"4","Added":"9","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9jb21ib3MvY29tYm9zLXBvci1jYWphLmh0bWw_cD0xJnByb2R1Y3RfbGlzdF9saW1pdD02NA%2C%2C/product/6039/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null},{"Attr":null,"IdArticulo":"525","Sku":"6042","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/aeb45d6a4c340a462a5f781b444a41fa/c/d/cdb-stock_almacen_2x-100.jpg","Descripcion":"Combo Stockeo de Alacena","Precio":"$3.636,00","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$3.636,00","PrecioAnterior":"$4.545,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"20% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/combo-stockeo-de-alacena.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"2","Added":"5","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9jYXRhbG9nc2VhcmNoL3Jlc3VsdC8_cT0xNzc5NDYyNjAxMDEyMg%2C%2C/product/6042/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null},{"Attr":null,"IdArticulo":"523","Sku":"6036","UrlImagen":"https://clubdebeneficios.com/media/catalog/product/cache/bee9b0fe48819553faba103d5513fcf9/c/d/cdb-stock_dove_men_2x-100.jpg","Descripcion":"Combo Stockeo Dove Men","Precio":"$3.708,00","PrecioM2":null,"PrecioKgLtr":"","PrecioInternet":"$3.708,00","PrecioAnterior":"$6.180,00","PrecioAnteriorTitulo":null,"Stock":"10000","Marca":"","Categoria":null,"SuperOferta":null,"Articulo_Oferta":"¡OFERTA!","CucardaOferta":"40% OFF","Image_CucardaUrlImage":"","Image_CucardaUrlImageExterna":"","Descuento_Tipo":null,"Descuento_Subtipo":null,"Descuento_Prioridad":0,"Descuento_Imagen":null,"Descuento_Descripcion":null,"Descuento_Descripcion_Email":null,"URLRenderBanner":null,"Link":"https://clubdebeneficios.com/combo-stockeo-dove-men.html","EMail_Price1_Title":null,"EMail_Price1_Value":null,"EMail_Price2_Title":null,"EMail_Price2_Value":null,"EMail_Price3_Title":null,"EMail_Price3_Value":null,"EMail_Color1":null,"Cuota_Numero":null,"Cuota_Monto":null,"Email_Cuota_Title":null,"HtmlKey":null,"IdCategoria":"","Views":"1","Added":"3","addToCart":"https://clubdebeneficios.com/checkout/cart/add/uenc/aHR0cHM6Ly9jbHViZGViZW5lZmljaW9zLmNvbS9jb21ib3MvY29tYm9zLWRlLXBlcmZ1bWVyaWEuaHRtbD9wPTEmcHJvZHVjdF9saXN0X2xpbWl0PTY0/product/6036/","PrecioKgLtrUnidad":"un","EMail_PriceCustom_Value":"","EMail_PriceCustom_Title":null,"UnidadPrecio":null,"PromocionesData":null,"IsNew":null,"FechaFinLanzamiento":null,"Model":null,"SaleNumber":null,"CuotaDescripcion":null,"CuotaTarjeta":null,"CuotaFinanciacion":null,"IdArticuloCarro":null,"Color":null,"Talle":null,"Sucursal":null,"SucursalCodigo":null,"DateUpdate":null,"Items":null,"Promociones":null}];//BEGIN_CONFIG
+var configJson = [{
+    "id": "0001",
+    "title": "Gondola de 1 Imagen a la Izquierda y 4 Productos",
+    "previewImageUrl": "",
+    "settings": [{
+            "key": "title1",
+            "title": "Titulo",
+            "value": "",
+            "type": "text"
+        },
+        {
+            "key": "image",
+            "title": "Subir Imagen",
+            "value": "",
+            "type": "img",
+            "group": "1",
+            "width": "235",
+            "height": "405"
+        },
+        {
+            "key": "url",
+            "title": "Link Image",
+            "value": "",
+            "type": "link",
+            "group": "1"
+        }
+    ]
+    },
+    {
+        "id": "0002",
+        "title": "Gondola de 1 Imagen a la Derecha y 4 Productos",
+        "previewImageUrl": "",
+        "settings": [{
+                "key": "title1",
+                "title": "Titulo",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "key": "image",
+                "title": "Subir Imagen",
+                "value": "",
+                "type": "img",
+                "group": "1",
+                "width": "235",
+                "height": "405"
+            },
+            {
+                "key": "url",
+                "title": "Link Image",
+                "value": "",
+                "type": "link",
+                "group": "1"
+            }
+        ]
+    },
+    {
+        "id": "0003",
+        "title": "Gondola de 2 Imagenes a Ambos Extremos",
+        "previewImageUrl": "",
+        "settings": [{
+                "key": "title1",
+                "title": "Titulo",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "key": "image",
+                "title": "Subir Imagen Derecha",
+                "value": "",
+                "type": "img",
+                "group": "1",
+                "width": "235",
+                "height": "405"
+            },
+            {
+                "key": "url1",
+                "title": "Link Derecha",
+                "value": "",
+                "type": "link",
+                "group": "1"
+            },
+            {
+                "key": "image",
+                "title": "Subir Imagen Izquierda",
+                "value": "",
+                "type": "img",
+                "group": "2",
+                "width": "235",
+                "height": "405"
+            },
+            {
+                "key": "url2",
+                "title": "Link Izquierda",
+                "value": "",
+                "type": "link",
+                "group": "2"
+            }
+        ]
+    },
+    {
+        "id": "0004",
+        "title": "Gondola de 1 Imagen Grande (3 lugares) a la Izquierda",
+        "previewImageUrl": "",
+        "settings": [{
+                "key": "title1",
+                "title": "Titulo",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "key": "image",
+                "title": "Subir Imagen",
+                "value": "",
+                "type": "img",
+                "group": "1",
+                "width": "470",
+                "height": "405"
+            },
+            {
+                "key": "url",
+                "title": "Link Image",
+                "value": "",
+                "type": "link",
+                "group": "1"
+            }
+        ]
+    },
+    {
+        "id": "0005",
+        "title": "Gondola de 1 Imagen Grande (3 lugares) a la Derecha",
+        "previewImageUrl": "",
+        "settings": [{
+                "key": "title1",
+                "title": "Titulo",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "key": "image",
+                "title": "Subir Imagen",
+                "value": "",
+                "type": "img",
+                "group": "1",
+                "width": "470",
+                "height": "405"
+            },
+            {
+                "key": "url",
+                "title": "Link Image",
+                "value": "",
+                "type": "link",
+                "group": "1"
+            }
+        ]
+    },
+]
+//END_CONFIG
+try{
+        window['braindwgonda7'] = bdwJsonResult;
+
+        var _bdwSettings = null;
+        if (window['braindwgonda7'] !== undefined && window['braindwgonda7'].length > 0) {
+            var bdwitems = 5,
+                sliderwidth = '100%',
+                imagewidth = '100%';
+                if (typeof window['braindwgondola7' + "_resultJson"] != 'undefined') {
+                    _bdwSettings = BdwBuildConfigObject(window['braindwgondola7' + "_resultJson"].id, window['braindwgondola7' + "_resultJson"].settings);
+                    bdwitems = _bdwSettings.carouselItemsNum;
+                    sliderwidth = _bdwSettings.sliderWidth;
+                    imagewidth = _bdwSettings.imagesObjects[0].width;
+                }
+            if (document.contains(document.querySelector('#' + 'braindwgondola7'))) {
+                document.querySelector('#' + 'braindwgondola7').remove();
+            }
+
+            var _braindwtemplate = BraindwRenderBanner(window['braindwgonda7'], 'braindwgondola7', 'Combos en Caja ', 'BDW-Home-Carrusel-7', 'braindwgonda7', _bdwSettings, '' ,'<%TEMPLATE_TYPE%>');
+            if (_braindwtemplate !== '' && _braindwtemplate != null && window.jQuery) {
+                if ('') {
+                    jQuery('').remove();
+                }
+                document.querySelector(".braindw-internal-container").insertAdjacentHTML('beforeend', _braindwtemplate);
+                if ('<%TEMPLATE_TYPE%>' === 'header') {
+                    braindwStartHeader('braindwgondola7', 1, 0);
+                } else {
+                    braindwStartCarousel('braindwgondola7', bdwitems, 0);
+                }
+
+                var heightCarousel = '';
+                if(bdwMobile.any()){
+                    heightCarousel = "400";
+                }
+                else{
+                        heightCarousel = "530";
+                }
+                if (typeof window['braindwgondola7' + "_resultJson"] != 'undefined') {
+                    window.parent.postMessage("FullLoadedCarouselWithConfig|" + heightCarousel + "|#BDW-Home-Carrusel-7", '*');
+
+                } else {
+                    window.parent.postMessage("FullLoadedCarousel|" + heightCarousel + "|#BDW-Home-Carrusel-7", '*');
+                }
+                window['braindwgonda7_DATA_EVENT'] = window['braindwgonda7'].map((item,pos)=> ({id:item.IdArticulo,price:item.Precio.replace('.','').replace(',','.'),name:item.Descripcion,brand:item.Marca,category:item.Categoria ? item.Categoria.split('/')[item.Categoria.split('/').length - 2] : "",variant:undefined,position:pos}))
+                window.parent.postMessage("PushEventCarousel|BDW-Home-Carrusel-7_braindwgonda7_"+ JSON.stringify(window['braindwgonda7_DATA_EVENT']), '*');
+                window.parent.postMessage("BraindwRemoveElements|", '*');
+
+            }
+        }
+        window.parent.postMessage("FinishRenderBdw", '*');
+    }catch (e) {
+        console.log(e);
+    }
+
+
+
+</script>
+</body>
+</html>
