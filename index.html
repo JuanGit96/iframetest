@@ -915,9 +915,9 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
                                 '<input value="1" type="number" size="4" min="1" class="item-qty input-qty-item" id="qty_%idArticulo%" tabindex="0">'+
                                 '<a class="qty-control qty-add"><span>+</span></a>'+
                             '</div>'+
-                            '<button type="submit" title="Agregar" class="action tocart border" tabindex="0">'+
+                            '<a onclick="BraindwAddToCart(\'%cart_data%\',this);return false;" type="submit" title="Agregar" class="buyButton action tocart border" tabindex="0" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">'+
                                 '<span class="desktop-hide">Agregar</span>'+
-                            '</button>'+
+                            '</a>'+
                         '</div>'+
                     '</form>'+
                     '<!--end Cambio summa-->'+
