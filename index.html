@@ -589,6 +589,12 @@ window.addEventListener('message', function (event) {
     console.log('Received origin: ', event.origin);
     currentCartData = event.data;
 }, false);
+
+for (var key in currentCartData.items) {
+    console.log("itemmm->",key);
+}
+
+
 /*end summa*/
 
 function ClickEventUrl(data) {
