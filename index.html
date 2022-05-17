@@ -590,6 +590,10 @@ window.addEventListener('message', function (event) {
     currentCartData = event.data;
     for (var key in currentCartData.items) {
         console.log("itemmm->",currentCartData.items[key]);
+        var productId = currentCartData.items[key].product_id;
+        var productSku = currentCartData.items[key].product_sku;
+        var qtyProductInCart = currentCartData.items[key].qty;
+
     }
 }, false);
 /*end summa*/
@@ -908,7 +912,7 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
                                 '<a class="qty-control qty-deduce" tabindex="0">'+
                                     '<span>-</span>'+
                                 '</a>'+
-                                '<input value="1" type="number" size="4" min="1" class="item-qty input-qty-item" id="" tabindex="0">'+
+                                '<input value="1" type="number" size="4" min="1" class="item-qty input-qty-item" id="qty_%idArticulo%" tabindex="0">'+
                                 '<a class="qty-control qty-add"><span>+</span></a>'+
                             '</div>'+
                             '<button type="submit" title="Agregar" class="action tocart border" tabindex="0">'+
