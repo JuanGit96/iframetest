@@ -601,7 +601,7 @@ window.addEventListener('message', function (event) {
 $(document).on('submit','form',function(e){
     e.preventDefault();
     console.log("enviando antes de submit...");
-    window.parent.postMessage($(this) , '*');
+    window.parent.postMessage($(this).attr("id") , '*');
     return  false;
 });
 /*end summa*/
@@ -930,6 +930,7 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
 
 
                     '<form data-role="tocart-form"'+
+                          'id="brain_carrousel_2220"'+
                           'data-product-sku="Jabon-dos-test"'+
                           'action="https://unilever-club-de-beneficios2.localhost/checkout/cart/add/uenc/aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC8%2C/product/2220/"'+
                           'action-add="https://unilever-club-de-beneficios2.localhost/checkout/cart/add/uenc/aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC8%2C/product/2220/"'+
