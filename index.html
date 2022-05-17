@@ -635,11 +635,39 @@ function BraindwAddToCart(data,element) {
     },2000)
     var quantity = $(element).closest('form').find('input').val();
     var datasend=data.split("|")[0]+"_"+ quantity;
-    console.log(datasend);
+    console.log("datasend->",datasend);
     window.parent.postMessage("BraindwEventAnalyticsBuy|"+ datasend , '*');
     window.parent.postMessage("BraindwAddCartEvent|"+urlToCart+"," + sku +"," + quantity + "," + urlLink +"," + bdwAttrEti+"," + bdwAttrCat, '*');
 
+                $.ajax({
+                    url: urlToCart,
+                    data: { product: '2220', item: '2220', qty: '1', form_key: 'oftc900dITOkn9Py' },
+                    type: 'post',
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
 
+                    /** @inheritdoc */
+                    beforeSend: function () {
+                        console.log("enviando request...");
+                    },
+
+                    /** @inheritdoc */
+                    success: function (res) {
+                        console.log("success request...");
+                    },
+
+                    /** @inheritdoc */
+                    error: function (res) {
+                        console.log("error request...");
+                    },
+
+                    /** @inheritdoc */
+                    complete: function (res) {
+                        console.log("complete request...");
+                    }
+                });
 
 }
 
