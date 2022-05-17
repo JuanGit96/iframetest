@@ -593,7 +593,7 @@ window.addEventListener('message', function (event) {
         var productId = currentCartData.items[key].product_id;
         var productSku = currentCartData.items[key].product_sku;
         var qtyProductInCart = currentCartData.items[key].qty;
-
+        $("#qty_" + productSku).val(qtyProductInCart);
     }
 }, false);
 /*end summa*/
