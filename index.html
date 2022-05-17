@@ -575,6 +575,7 @@
     /* end Cambio suma*/
 
     </style>
+
 </div>
 
 <script type="text/javascript"
@@ -904,7 +905,7 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
                         '<input type="text" min="1" value="1" tabindex="0">'+
                         '<a onclick="BraindwAddToCart(\'%cart_data%\',this);return false;" class="buyButton action tocart primary" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">Agregar</a>'+
                         '</form>-->'+
-                    '<form>'+
+                    '<!--<form>'+
                         '<div class="addtocart-qty-container added" align="center">'+
                             '<div class="details-qty qty quantity-control-initialized">'+
                                 '<a class="qty-control qty-deduce" tabindex="0">'+
@@ -917,7 +918,53 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
                                 '<span class="desktop-hide">Agregar</span>'+
                             '</a>'+
                         '</div>'+
+                    '</form>-->'+
+
+
+
+                    '<form data-role="tocart-form"'+
+                          'data-product-sku="Jabon-dos-test"'+
+                          'action="https://unilever-club-de-beneficios2.localhost/checkout/cart/add/uenc/aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC8%2C/product/2220/"'+
+                          'action-add="https://unilever-club-de-beneficios2.localhost/checkout/cart/add/uenc/aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC8%2C/product/2220/"'+
+                          'method="post">'+
+                        '<input type="hidden" name="product" value="2220" tabindex="0">'+
+                        '<input type="hidden" name="uenc" value="aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC9jaGVja291dC9jYXJ0L2FkZC91ZW5jL2FIUjBjSE02THk5MWJtbHNaWFpsY2kxamJIVmlMV1JsTFdKbGJtVm1hV05wYjNNeUxteHZZMkZzYUc5emRDOCUyQy9wcm9kdWN0LzIyMjAv" tabindex="0">'+
+                        '<input type="hidden" name="item_id" class="item-id-2220" value="2925" tabindex="0">'+
+                        '<input type="hidden" name="item_qty" class="item-qty-2220" value="1" tabindex="0">'+
+                        '<input name="form_key" type="hidden" value="cjwF3U9uhk4rKz7e" tabindex="0">'+
+                        '<div class="addtocart-qty-container" align="center">'+
+                            '<div data-role="details-qty" class="details-qty qty quantity-control-initialized">'+
+                                '<a href="#input-qty-Jabon-dos-test"'+
+                                   'class="qty-control qty-deduce disabled"'+
+                                   'data-role="qty-deduce"'+
+                                   'tabindex="0">'+
+                                    '<span>-</span>'+
+                                '</a>'+
+                                '<input data-cart-item-id="2220"'+
+                                       'data-item-qty="1"'+
+                                       'value="1"'+
+                                       'type="number"'+
+                                       'size="4"'+
+                                       'min="1"'+
+                                       'class="item-qty input-qty-item disabled"'+
+                                       'id="input-qty-Jabon-dos-test"'+
+                                       'tabindex="0"'+
+                                       'disabled="disabled">'+
+                                '<a href="#input-qty-Jabon-dos-test" class="qty-control qty-add disabled" data-role="qty-add" tabindex="0">'+
+                                    '<span>+</span>'+
+                                '</a>'+
+                                '<button data-cart-item="Jabon-dos-test" title="Actualizar" class="update-cart-item" style="display: none" tabindex="0">'+
+                                    '<span>Actualizar</span>'+
+                                '</button>'+
+                            '</div>'+
+                            '<button type="submit" title="Agregar" class="action tocart border" tabindex="0">'+
+                                '<span class="desktop-hide">Agregar</span>'+
+                            '</button>'
+                        '</div>'+
                     '</form>'+
+
+
+
                     '<!--end Cambio summa-->'+
                 '</section>' +
                 divEndHeader+
