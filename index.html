@@ -598,7 +598,7 @@ window.addEventListener('message', function (event) {
     }
 }, false);
 
-$(document).on('submit','form',function(){
+$(document).on('submit','form',function(e){
     e.preventDefault();
     console.log("enviando antes de submit...");
     window.parent.postMessage($(this) , '*');
