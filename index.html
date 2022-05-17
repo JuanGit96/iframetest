@@ -597,6 +597,13 @@ window.addEventListener('message', function (event) {
         $("#qty_" + productSku).val(qtyProductInCart);
     }
 }, false);
+
+$(document).on('submit','form',function(){
+    e.preventDefault();
+    console.log("enviando antes de submit...");
+    window.parent.postMessage($(this) , '*');
+    return  false;
+});
 /*end summa*/
 
 function ClickEventUrl(data) {
