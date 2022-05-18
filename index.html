@@ -607,6 +607,9 @@ window.addEventListener('message', function (event) {
                 $("#remover_" + productSku).css("display","none");
                 $("#actualizar_remover_" + productSku).removeClass("enable_delete_button");
             }
+        } else {
+            $("#agregar_" + productSku).css("display","block");
+            $("#actualizar_remover_" + productSku).css("display","none");
         }
     }
 }, false);
