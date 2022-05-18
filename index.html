@@ -608,6 +608,7 @@ $(document).on('submit','form',function(e){
     $.ajax({
         url: form.attr('action'),
         headers: {'Access-Control-Allow-Origin': 'https://unilever-club-de-beneficios2.localhost'},
+        crossDomain: true,
         data: formData,
         type: "POST",
         dataType: "json",
