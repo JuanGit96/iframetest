@@ -599,10 +599,10 @@ window.addEventListener('message', function (event) {
             $("#agregar_" + productSku).css("display","none");
             $("#actualizar_remover_" + productSku).css("display","block");
             if(qtyProductInCart == '1') {
-                $("#remover_" + productSku).css("display","block");
+                $("#remover_" + productSku).css("display","inline-block");
                 $("#actualizar_" + productSku).css("display","none");
             } else {
-                $("#actualizar_" + productSku).css("display","block");
+                $("#actualizar_" + productSku).css("display","inline-block");
                 $("#remover_" + productSku).css("display","none");
             }
         }
