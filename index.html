@@ -595,47 +595,19 @@ window.addEventListener('message', function (event) {
         var productSku = currentCartData.items[key].product_sku;
         var qtyProductInCart = currentCartData.items[key].qty;
         $("#qty_" + productSku).val(qtyProductInCart);
+        if(qtyProductInCart > 0) {
+            $("#agregar_" + productSku).css("display","none");
+            $("#actualizar_remover_" + productSku).css("display","block");
+            if(qtyProductInCart == '1') {
+                $("#remover_" + productSku).css("display","block");
+                $("#actualizar_" + productSku).css("display","none");
+            } else {
+                $("#actualizar_" + productSku).css("display","block");
+                $("#remover_" + productSku).css("display","none");
+            }
+        }
     }
 }, false);
-
-$(document).on('submit','form',function(e){
-    e.preventDefault();
-    console.log("enviando antes de submit...");
-    //window.parent.postMessage({"product": $(this).attr("id"), "item" }, '*');
-    //var form = $(this);
-    //var formData = new FormData(form[0]);
-
-    /*$.ajax({
-        url: form.attr('action'),
-        headers: {'Access-Control-Allow-Origin': 'https://unilever-club-de-beneficios2.localhost'},
-        crossDomain: true,
-        data: formData,
-        type: "POST",
-        dataType: "json",
-        cache: false,
-        contentType: false,
-        processData: false,
-
-        beforeSend: function () {
-            console.log("enviando request...");
-        },
-
-        success: function (res) {
-            console.log("success request...");
-        },
-
-        error: function (xhr, textStatus, errorThrown) {
-            console.log("error request...",textStatus);
-        },
-
-        complete: function (res) {
-            console.log("complete request...");
-        }
-    });*/
-
-
-    return  false;
-});
 /*end summa*/
 
 function ClickEventUrl(data) {
@@ -936,75 +908,31 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
                     '<div class="container-info">'+
                         '<a href="%link%" onclick="ClickEventUrl(\'%data%\',this);return false;" class="product-name" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">%Descripcion%</a>' +
                     '</div>'+
-                    '<form class="btn" style="display:%display_view%">'+
-                        '<a href="%link%" onclick="ClickEventUrl(\'%data%\',this);return false;" class="buyButton" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">Ver Producto</a>'+
-                    '</form>'+
                     '<!--Cambio summa-->'+
+                    '<!--<form class="btn" style="display:%display_view%">'+
+                        '<a href="%link%" onclick="ClickEventUrl(\'%data%\',this);return false;" class="buyButton" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">Ver Producto</a>'+
+                    '</form>-->'+
                     '<!--<form class="btn" style="display:%display_addCart%">'+
                         '<input type="text" min="1" value="1" tabindex="0">'+
                         '<a onclick="BraindwAddToCart(\'%cart_data%\',this);return false;" class="buyButton action tocart primary" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">Agregar</a>'+
                         '</form>-->'+
                     '<form>'+
                         '<div class="addtocart-qty-container added" align="center">'+
-                            '<div class="details-qty qty quantity-control-initialized">'+
-                                '<a class="qty-control qty-deduce" tabindex="0">'+
+                            '<div id="actualizar_remover_%idArticulo%" class="details-qty qty quantity-control-initialized" style="display:none;">'+
+                                '<a id="actualizar_%idArticulo%" onclick="BraindwUpdateCart(\'%cart_data%\',this);return false;" class="qty-control qty-deduce" tabindex="0">'+
                                     '<span>-</span>'+
                                 '</a>'+
-                                '<input value="1" type="number" size="4" min="1" class="item-qty input-qty-item" id="qty_%idArticulo%" tabindex="0">'+
-                                '<a class="qty-control qty-add"><span>+</span></a>'+
+                                '<a id="remover_%idArticulo%" onclick="BraindwRemoveToCart(\'%cart_data%\',this);return false;" class="qty-control qty-deduce" tabindex="0">'+
+                                    '<span>-</span>'+
+                                '</a>'+
+                                '<input value="0" type="number" size="4" min="1" class="item-qty input-qty-item" id="qty_%idArticulo%" tabindex="0">'+
+                                '<a onclick="BraindwUpdateCart(\'%cart_data%\',this);return false;" class="qty-control qty-add"><span>+</span></a>'+
                             '</div>'+
-                            '<a onclick="BraindwAddToCart(\'%cart_data%\',this);return false;" type="submit" title="Agregar" class="buyButton action tocart border" tabindex="0" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">'+
+                            '<a id="agregar_%idArticulo%" onclick="BraindwAddToCart(\'%cart_data%\',this);return false;" title="Agregar" class="buyButton action tocart border" tabindex="0" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">'+
                                 '<span class="desktop-hide">Agregar</span>'+
                             '</a>'+
                         '</div>'+
                     '</form>'+
-
-
-
-                    '<!--<form data-role="tocart-form"'+
-                          'id="brain_carrousel_2220"'+
-                          'data-product-sku="Jabon-dos-test"'+
-                          'action="https://unilever-club-de-beneficios2.localhost/checkout/cart/add/uenc/aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC8%2C/product/2220/"'+
-                          'action-add="https://unilever-club-de-beneficios2.localhost/checkout/cart/add/uenc/aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC8%2C/product/2220/"'+
-                          'method="post">'+
-                        '<input type="hidden" name="product" value="2220" tabindex="0">'+
-                        '<input type="hidden" name="uenc" value="aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC9jaGVja291dC9jYXJ0L2FkZC91ZW5jL2FIUjBjSE02THk5MWJtbHNaWFpsY2kxamJIVmlMV1JsTFdKbGJtVm1hV05wYjNNeUxteHZZMkZzYUc5emRDOCUyQy9wcm9kdWN0LzIyMjAv" tabindex="0">'+
-                        '<input type="hidden" name="item_id" class="item-id-2220" value="" tabindex="0">'+
-                        '<input type="hidden" name="item_qty" class="item-qty-2220" value="1" tabindex="0">'+
-                        '<input name="form_key" type="hidden" value="cjwF3U9uhk4rKz7e" tabindex="0">'+
-                        '<div class="addtocart-qty-container" align="center">'+
-                            '<div data-role="details-qty" class="details-qty qty quantity-control-initialized">'+
-                                '<a href="#input-qty-Jabon-dos-test"'+
-                                   'class="qty-control qty-deduce disabled"'+
-                                   'data-role="qty-deduce"'+
-                                   'tabindex="0">'+
-                                    '<span>-</span>'+
-                                '</a>'+
-                                '<input data-cart-item-id="2220"'+
-                                       'data-item-qty="1"'+
-                                       'value="1"'+
-                                       'type="number"'+
-                                       'size="4"'+
-                                       'min="1"'+
-                                       'class="item-qty input-qty-item disabled"'+
-                                       'id="input-qty-Jabon-dos-test"'+
-                                       'tabindex="0"'+
-                                       'disabled="disabled">'+
-                                '<a href="#input-qty-Jabon-dos-test" class="qty-control qty-add disabled" data-role="qty-add" tabindex="0">'+
-                                    '<span>+</span>'+
-                                '</a>'+
-                                '<button data-cart-item="Jabon-dos-test" title="Actualizar" class="update-cart-item" style="display: none" tabindex="0">'+
-                                    '<span>Actualizar</span>'+
-                                '</button>'+
-                            '</div>'+
-                            '<button type="submit" title="Agregar" class="action tocart border" tabindex="0">'+
-                                '<span class="desktop-hide">Agregar...</span>'+
-                            '</button>'
-                        '</div>'+
-                    '</form>-->'+
-
-
-
                     '<!--end Cambio summa-->'+
                 '</section>' +
                 divEndHeader+
