@@ -607,6 +607,7 @@ $(document).on('submit','form',function(e){
 
     $.ajax({
         url: form.attr('action'),
+        headers: {'Access-Control-Allow-Origin': 'http://unilever-club-de-beneficios2.localhost'},
         data: formData,
         type: "POST",
         dataType: "json",
@@ -967,7 +968,7 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
                           'method="post">'+
                         '<input type="hidden" name="product" value="2220" tabindex="0">'+
                         '<input type="hidden" name="uenc" value="aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC9jaGVja291dC9jYXJ0L2FkZC91ZW5jL2FIUjBjSE02THk5MWJtbHNaWFpsY2kxamJIVmlMV1JsTFdKbGJtVm1hV05wYjNNeUxteHZZMkZzYUc5emRDOCUyQy9wcm9kdWN0LzIyMjAv" tabindex="0">'+
-                        '<input type="hidden" name="item_id" class="item-id-2220" value="2925" tabindex="0">'+
+                        '<input type="hidden" name="item_id" class="item-id-2220" value="" tabindex="0">'+
                         '<input type="hidden" name="item_qty" class="item-qty-2220" value="1" tabindex="0">'+
                         '<input name="form_key" type="hidden" value="cjwF3U9uhk4rKz7e" tabindex="0">'+
                         '<div class="addtocart-qty-container" align="center">'+
