@@ -601,11 +601,11 @@ window.addEventListener('message', function (event) {
 $(document).on('submit','form',function(e){
     e.preventDefault();
     console.log("enviando antes de submit...");
-    //window.parent.postMessage($(this).attr("id") , '*');
-    var form = $(this);
-    var formData = new FormData(form[0]);
+    window.parent.postMessage({"product": $(this).attr("id"), "item" }, '*');
+    //var form = $(this);
+    //var formData = new FormData(form[0]);
 
-    $.ajax({
+    /*$.ajax({
         url: form.attr('action'),
         headers: {'Access-Control-Allow-Origin': 'https://unilever-club-de-beneficios2.localhost'},
         crossDomain: true,
@@ -631,7 +631,7 @@ $(document).on('submit','form',function(e){
         complete: function (res) {
             console.log("complete request...");
         }
-    });
+    });*/
 
 
     return  false;
@@ -944,7 +944,7 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
                         '<input type="text" min="1" value="1" tabindex="0">'+
                         '<a onclick="BraindwAddToCart(\'%cart_data%\',this);return false;" class="buyButton action tocart primary" data-id="" bw-title="%Descripcion%" bw-section="%sectionEvent%" bw-sku="%idArticulo%">Agregar</a>'+
                         '</form>-->'+
-                    '<!--<form>'+
+                    '<form>'+
                         '<div class="addtocart-qty-container added" align="center">'+
                             '<div class="details-qty qty quantity-control-initialized">'+
                                 '<a class="qty-control qty-deduce" tabindex="0">'+
@@ -957,11 +957,11 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
                                 '<span class="desktop-hide">Agregar</span>'+
                             '</a>'+
                         '</div>'+
-                    '</form>-->'+
+                    '</form>'+
 
 
 
-                    '<form data-role="tocart-form"'+
+                    '<!--<form data-role="tocart-form"'+
                           'id="brain_carrousel_2220"'+
                           'data-product-sku="Jabon-dos-test"'+
                           'action="https://unilever-club-de-beneficios2.localhost/checkout/cart/add/uenc/aHR0cHM6Ly91bmlsZXZlci1jbHViLWRlLWJlbmVmaWNpb3MyLmxvY2FsaG9zdC8%2C/product/2220/"'+
@@ -1001,7 +1001,7 @@ function BraindwRenderBanner(data, gondola, title, eventName, sufix, configs, li
                                 '<span class="desktop-hide">Agregar</span>'+
                             '</button>'
                         '</div>'+
-                    '</form>'+
+                    '</form>-->'+
 
 
 
@@ -1646,6 +1646,2045 @@ try{
 
 
 
+</script>
+
+
+
+
+<script type="text/javascript">
+
+//inicial
+function geBdwtMeta(metaProperty) {
+    try{
+    const metas = document.getElementsByTagName('meta');
+
+    for (let i = metas.length-1; i >0; i--) {
+      if (metas[i].getAttribute('property') === metaProperty) {
+      return metas[i].getAttribute('content');
+      }
+    }
+  }catch{}
+    return '';
+    }
+
+    // Cambio de endpoint desplegable
+    var bdwLastSearchTerm = "";
+    var tempBraidwVar;
+    let bdwController;
+    var oldXMLHttpRequest = XMLHttpRequest;
+    (function () {
+    // define constructor for my proxy object
+    XMLHttpRequest = function () {
+      var actual = new oldXMLHttpRequest();
+      var self = this;
+      this.onreadystatechange = null;
+      // this is the actual handler on the real XMLHttpRequest object
+      actual.onreadystatechange = async function () {
+      if (this.readyState == 4) {
+        self.responseText = actual.responseText;
+        if (
+        actual.responseURL != null &&
+        actual.responseURL.indexOf("/search/ajax/suggest") != -1 &&
+        actual.responseURL.indexOf("&__") == -1
+        ) {
+        const term = actual.responseURL.split("&")[0].split("q=")[1];
+        var bdwIsLoged = true;
+        try {
+          document.querySelector(".amsearch-leftside").remove();
+          document.querySelector("#amasty-shopby-product-list").style.width =
+          "100%";
+          document.querySelector(
+          ".amsearch-results"
+          ).childNodes[1].textContent = "";
+          document
+          .querySelector("#amasty-shopby-product-list")
+          .childNodes[
+            document.querySelector("#amasty-shopby-product-list").childNodes
+            .length - 1
+          ].remove();
+        } catch (e) {}
+        try {
+          bdwController.abort();
+        } catch (e) {}
+        bdwController = new AbortController();
+        setTimeout(() => {
+          try {
+          bdwController.abort();
+          } catch (e) {}
+        }, 4000);
+        if (jQuery(".loggedin_title").length == 0) bdwIsLoged = false;
+        bdwLastSearchTerm = term;
+        //chinese = hasChinese(decodeURI(term));
+
+
+        const isLogged =
+        document.querySelectorAll(".logged-in").length == 0
+          ? false
+          : true;
+        const url = !isLogged
+        ? "https://u.braindw.com/els/clubdebeneficios?ft=" +
+          term +
+          "&qt=5&sc=1&refreshmetadata=false&apisearch=true"
+        : "https://u.braindw.com/els/clubdebeneficios?ft=" +
+          term +
+          "&qt=5&sc=1&refreshmetadata=true&apisearch=true";
+        const transformProduct = (item) => {
+        let returnObject;
+        if (isLogged) {
+          if (item.PrecioAnterior == "" || item.PrecioAnterior === null) {
+          returnObject = {
+            type: "product",
+            title: item.Descripcion,
+            image: item.UrlImagen,
+            url: item.Link,
+            price: `<div class=\"price-box price-final_price\" data-role=\"priceBox\" data-product-id=\"${
+            item.Sku
+            }\" data-price-box=\"product-id-${
+            item.Sku
+            }\">\n\n\n    \n\n<span class=\"price-container price-final_price&#x20;tax&#x20;weee\"\n        >\n        <span  id=\"product-price-${
+            item.Sku
+            }\"                data-price-amount=\"${item.PrecioInternet.replace(
+            "$",
+            ""
+            )}\"\n        data-price-type=\"finalPrice\"\n        class=\"price-wrapper \"\n    ><span class=\"price\">${
+            item.PrecioInternet
+            }</span></span>\n        </span>\n\n</div>`,
+          };
+          } else {
+          returnObject = {
+            type: "product",
+            title: item.Descripcion,
+            image: item.UrlImagen,
+            url: item.Link,
+            price: `<div class=\"price-box price-final_price\" data-role=\"priceBox\" data-product-id=\"${
+            item.Sku
+            }\" data-price-box=\"product-id-${
+            item.Sku
+            }\">\n\n\n    <span class=\"old-price\">\n        \n\n<span class=\"price-container price-final_price&#x20;tax&#x20;weee\"\n        >\n            <span class=\"price-label\">Precio habitual</span>\n        <span  id=\"old-price-${
+            item.Sku
+            }\"                data-price-amount=\"${item.PrecioAnterior.replace(
+            "$",
+            ""
+            )}\"\n        data-price-type=\"oldPrice\"\n        class=\"price-wrapper \"\n    ><span class=\"price\">${
+            item.PrecioAnterior
+            }</span></span>\n        </span>\n    </span>\n    <div class=\"percentage-discount\">\n        <span class=\"special-price\">\n            \n\n<span class=\"price-container price-final_price&#x20;tax&#x20;weee\"\n        >\n            <span class=\"price-label\">Precio especial</span>\n        <span  id=\"product-price-${
+            item.Sku
+            }\"                data-price-amount=\"${item.PrecioInternet.replace(
+            "$",
+            ""
+            )}\"\n        data-price-type=\"finalPrice\"\n        class=\"price-wrapper \"\n    ><span class=\"price\">${
+            item.PrecioInternet
+            }</span></span>\n        </span>\n        </span>\n        \n            <span class=\"special-price-discount\"></span>\n        </div>\n\n</div>`,
+          };
+          }
+        } else {
+          returnObject = {
+          type: "product",
+          title: item.title,
+          image: item.imageUrl,
+          url: item.link,
+          price: "",
+          };
+        }
+        return returnObject;
+        };
+        const transformBrand = (item) => {
+        let returnObject;
+        let brand = isLogged
+          ? item.Link.split("com/")[1].split("-")[0]
+          : item.link.split("com/")[1].split("-")[0];
+        let brandCapitalized =
+          brand.charAt(0).toUpperCase() + brand.slice(1);
+        returnObject = {
+          attribute_code: "brand",
+          attribute_label: "Marca",
+          type: "product_attribute",
+          count: 62,
+          title: brandCapitalized,
+          url:
+          "https://clubdebeneficios.com/catalogsearch/result/?brand=" +
+          brandCapitalized +
+          "&q=" +
+          brandCapitalized,
+        };
+        return returnObject;
+        };
+        const transformCategory = (item) => {
+        let responseObject;
+        let category = isLogged
+          ? item.Categoria.split("/")
+            .pop()
+            .replace(/-/g, " ")
+            .toLowerCase()
+          : item.categories
+            .split("/")
+            .pop()
+            .replace(/-/g, " ")
+            .toLowerCase();
+        let categoryCapitalized =
+          category.charAt(0).toUpperCase() + category.slice(1);
+        responseObject = {
+          type: "category",
+          title: categoryCapitalized,
+          url: "https://clubdebeneficios.com" + item.Categoria + ".html",
+          breadcrumb: [],
+        };
+        return responseObject;
+        };
+
+
+        await fetch(
+          url,
+          { signal: bdwController.signal }
+        )
+          .then((res) => res.json())
+          .then((response) => {
+
+
+          //console.log(response);
+          let items = "";
+          let itemsArray = [];
+          if (
+            response &&
+            //response.hits.hits.length > 0 &&
+            bdwLastSearchTerm == term
+          ) {
+            let bdwTotalItems =0;
+            if(isLogged) bdwTotalItems = response.length; else bdwTotalItems=response.hits.hits.length;
+
+
+            let brands = [];
+            let categories = [];
+            let products = [];
+            if (response !== undefined && bdwTotalItems <= 0) {
+            self.responseText = actual.responseText;
+            } else {
+            var responseItems = response;
+            if(!isLogged) responseItems = response.hits.hits;
+
+            responseItems.forEach((item) => {
+
+              JSON.stringify(item);
+              if (products.length < 2) {
+              products.push(
+                transformProduct(isLogged ? item : item._source)
+              );
+              }
+              let brand = isLogged
+              ? item.Link.split("com/")[1].split("-")[0]
+              : item._source.link.split("com/")[1].split("-")[0];
+              let brandCapitalized =
+              brand.charAt(0).toUpperCase() + brand.slice(1);
+              if (
+              brands.length < 3 &&
+              brands.filter((i) => i.title == brandCapitalized).length == 0
+              ) {
+              brands.push(transformBrand(isLogged ? item : item._source));
+              }
+              let category = isLogged
+              ? item.Categoria.split("/")
+                .pop()
+                .replace(/-/g, " ")
+                .toLowerCase()
+              : item._source.categories
+                .split("/")
+                .pop()
+                .replace(/-/g, " ")
+                .toLowerCase();
+              let categoryCapitalized =
+              category.charAt(0).toUpperCase() + category.slice(1);
+              if (
+              categories.length < 3 &&
+              categories.filter((i) => i.title == categoryCapitalized)
+                .length == 0
+              ) {
+              categories.push(
+                transformCategory(isLogged ? item : item._source)
+              );
+              }
+            });
+            let finalResponse = [];
+            finalResponse = finalResponse
+              .concat(products)
+              .concat(brands)
+              .concat(categories);
+            self.responseText = JSON.stringify(finalResponse);
+            }
+
+
+            // Agrego los eventos en click
+
+            function BraindwPushEventIframe(cat, eti, sku) {
+            try {
+              if (sku != "") eti = eti + "[" + sku + "]";
+              dataLayer.push({
+              event: "ga-braindw",
+              eventCategory: "ga-braindw",
+              eventAction: cat,
+              eventLabel: eti,
+              });
+            } catch (err) {
+              console.log(err);
+            }
+            }
+            setTimeout(function (f) {
+            document
+              .querySelectorAll(".autocomplete-list  .product")
+              .forEach((node) => {
+              node.addEventListener("click", (e) => {
+                BraindwPushEventIframe(
+                "desplegable-buscador",
+                e.target.innerText.trim(),
+                ""
+                );
+              });
+              });
+            }, 500);
+
+          } else {
+          }
+          })
+          .catch((e) => console.log(e.message));
+        }
+      }
+      //self.responseText='';
+      if (self.onreadystatechange) {
+        return self.onreadystatechange();
+      }
+      };
+
+      // add all proxy getters
+      [
+      "status",
+      "statusText",
+      "responseType",
+      "response",
+      "readyState",
+      "responseXML",
+      "upload",
+      ].forEach(function (item) {
+      Object.defineProperty(self, item, {
+        get: function () {
+        return actual[item];
+        },
+      });
+      });
+
+      // add all proxy getters/setters
+      [
+      "ontimeout, timeout",
+      "withCredentials",
+      "onload",
+      "onerror",
+      "onprogress",
+      ].forEach(function (item) {
+      Object.defineProperty(self, item, {
+        get: function () {
+        return actual[item];
+        },
+        set: function (val) {
+        actual[item] = val;
+        },
+      });
+      });
+
+      // add all pure proxy pass-through methods
+      [
+      "addEventListener",
+      "send",
+      "open",
+      "abort",
+      "getAllResponseHeaders",
+      "getResponseHeader",
+      "overrideMimeType",
+      "setRequestHeader",
+      ].forEach(function (item) {
+      Object.defineProperty(self, item, {
+        value: function () {
+        return actual[item].apply(actual, arguments);
+        },
+      });
+      });
+    };
+    })();
+
+
+
+  // fin buscador
+  var BraindwDomReady = function (callback) {
+    document.readyState === "interactive" || document.readyState === "complete"
+      ? callback()
+      : document.addEventListener("DOMContentLoaded", callback);
+  };
+
+  function Braindw_getProduct(data) {
+    let e = null;
+    if (data) {
+      var s = {},
+        t = braindw_getSessionDate();
+      t && (s.sessionDate = t);
+
+      var prod = data;
+      e = {
+        ProductCode: prod.codeproduct,
+        Title: prod.title,
+        PriceOnline: prod.price,
+        Brand: prod.brand,
+        Category: prod.categorycode,
+        CategoryCode: prod.categorycode,
+        UrlImage: prod.image,
+        UrlProduct: document.URL,
+        BranchOffice: BraindwGetSucCookie(),
+      };
+      s.product = e;
+      braindw_sendPersistency(s);
+    }
+  }
+
+  function Braindw_pushCategory() {
+    try {
+      var categorycode = location.pathname
+        .split("/")
+        [location.pathname.split("/").length - 1].replace(".html", "");
+      var e = {
+        Title: categorycode.replace("-", " "),
+        CategoryCode: categorycode,
+      };
+
+      var s = {},
+        t = braindw_getSessionDate();
+      t && (s.sessionDate = t);
+      s.category = e;
+      braindw_sendPersistency(s);
+    } catch (e) {}
+  }
+
+  function braindw_sendPersistency(e, emailGuest) {
+    let n = {
+      emailguest: emailGuest != undefined ? emailGuest : "",
+      dataset: encodeURI(JSON.stringify(e)),
+      page: "",
+      url: window.location.href.split("?")[0],
+      urlb:
+        _URLBNDW +
+        "/Script/braindw/clubdebeneficios_produccion_jknky?hs=Thu Dec 04 2019 20:49:26 GMT-0300 (hora estándar de Argentina)",
+      BranchOffice: "",
+    };
+    fetch("https://p.braindw.com/Api/Data/Capture", {
+      method: "POST",
+      body: JSON.stringify(n),
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then(function (data) {})
+      .catch(function (ex) {
+        console.log(ex);
+      });
+  }
+
+  function BraindwGetCookie(key) {
+    var BraindwCa = decodeURIComponent(document.cookie).split(";");
+    for (var bnwi = 0; bnwi < BraindwCa.length; bnwi++) {
+      if (BraindwCa[bnwi].indexOf(key) > -1) {
+        return BraindwCa[bnwi].split("=")[1];
+      }
+    }
+    return "";
+  }
+
+  function BraindwAddEvent(e, ev, callback) {
+    var elements = document.querySelectorAll(e);
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].addEventListener(ev, callback);
+    }
+  }
+
+  function BraindwLoadScript(e, t, r) {
+    var i = ($guadex = function (e) {
+        i._.push(e);
+      }),
+      a = BraindwGetSucCookie(),
+      o = (i.s = e.createElement(t)),
+      n = e.getElementsByTagName(t)[0];
+    (i.set = function (e) {
+      i.set._.push(e);
+    }),
+      (i._ = []),
+      (i.set._ = []),
+      (o.async = !0),
+      o.setAttribute("charset", "utf-8"),
+      (o.src =
+        _URLBNDW +
+        "/tracking/track?HASH=clubdebeneficios_produccion_jknky&branchOffice=" +
+        a +
+        "&wordsfound=" +
+        BraindwGetFoundWords() +
+        "&buyer={CLIENT.BUYER}&name=&lastname=&gender=&country=&state=&city=&email=&u=" +
+        escape(window.location) +
+        "&hs=" +
+        new Date()),
+      (i.t = +new Date()),
+      (o.type = "text/javascript"),
+      n.parentNode.insertBefore(o, n);
+  }
+
+  function BraindwBuildCartItem(url, sku, quantity) {}
+
+  function BraindwCaptureProduct(isCart, element) {
+    if (!element) {
+      element = document;
+    }
+    var data = {};
+    data.title =
+      element.querySelectorAll(".page-title span").length > 0
+        ? element.querySelector(".page-title span").innerText.trim()
+        : "";
+    data.price =
+      element.querySelectorAll(".price-final_price .price").length > 0
+        ? element.querySelector(".price-final_price .price").innerText.trim()
+        : "";
+    data.oldPrice =
+      element.querySelectorAll(".old-price .price").length > 0
+        ? element.querySelector(".old-price .price").innerText.trim()
+        : "";
+    data.onlinePrice = data.price;
+
+    //data.categoriescodes =
+    //  element.querySelectorAll("#txtCategoriesPath")[0].value.split("/")[0] + ",";
+    //data.categoriescodes += element.querySelectorAll(
+    //  "#txtCategoriesPath"
+    //)[0].value;
+    data.categoriescodes = element.querySelectorAll("#txtCategoriesPath")[0].value;
+
+    var bdwListOfObjects = []
+
+
+    for(var iBdw=0; iBdw<data.categoriescodes.split(',').length;iBdw++)
+    {
+
+      var bdwCategoryValue = data.categoriescodes.split(',')[iBdw];
+      if(bdwCategoryValue!='' && !bdwListOfObjects.includes(bdwCategoryValue)){
+        bdwListOfObjects.push(bdwCategoryValue);
+      }
+      for(var iBdw2=0;iBdw2<bdwCategoryValue.split('/').length;iBdw2++ )
+      {
+        var bdwStrCategory = bdwCategoryValue.split('/')[iBdw2];
+        if(bdwStrCategory!='' && !bdwListOfObjects.includes(bdwStrCategory)){
+          bdwListOfObjects.push(bdwStrCategory);
+        }
+      }
+    }
+
+    data.categoriescodes = bdwListOfObjects.join(',') ;
+
+    data.codeproduct =
+      element.querySelectorAll(".product.attribute.sku .value").length > 0
+        ? element
+            .querySelector(".product.attribute.sku .value")
+            .innerText.trim()
+            .toLocaleLowerCase()
+            .replace(/ /g, "-")
+        : "";
+    data.categorycode =
+      data.categoriescodes.split(",").length > 0
+        ? data.categoriescodes[data.categoriescodes.length - 1]
+        : "";
+    data.brand =
+      element.querySelectorAll(".product-item-brand span").length > 0
+        ? element.querySelector(".product-item-brand span").innerText.trim()
+        : "";
+    data.image =
+      element.querySelectorAll(".magnifier-preview img").length > 0
+        ? element.querySelector(".magnifier-preview img").getAttribute("src")
+        : geBdwtMeta('og:image');
+    if (data.price == data.oldPrice) data.oldPrice = "";
+
+    var urlParameters =
+      "og:title=" +
+      encodeURIComponent(data.title) +
+      "&og:image=" +
+      encodeURIComponent(data.image) +
+      "&og:url=" +
+      document.URL.replace("#", "") +
+      "&og:categoriescodes=" +
+      data.categoriescodes +
+      "&og:codeproduct=" +
+      data.codeproduct +
+      "&og:brand=" +
+      data.brand +
+      "&og:categorycode=" +
+      data.categorycode +
+      "&og:price=" +
+      data.price +
+      "&og:priceold=" +
+      data.oldPrice +
+      "&og:og:pricesale=" +
+      data.onlinePrice +
+      "&iscart=" +
+      isCart;
+
+    var _bndwOb2 = document.createElement("script");
+    _bndwOb2.async = true;
+    _bndwOb2.src = _URLBNDW + "/tracking/capture?HASH=clubdebeneficios_produccion_jknky&" + urlParameters;
+    _bndwOb2.charset = "UTF-8";
+    document.head.appendChild(_bndwOb2);
+
+    if (!isCart) {
+      Braindw_getProduct(data);
+      BraindwGetCrossCustoms(data.categoriescodes);
+      return;
+    }
+  }
+
+  function BraindwCaptureCategory(category) {
+
+    localStorage.setItem("bdw_last_category", category);
+    var _bndwOb2 = document.createElement("script");
+    _bndwOb2.async = true;
+    _bndwOb2.src =
+      _URLBNDW +
+      "/tracking/capture?HASH=clubdebeneficios_produccion_jknky&iscategory=true&og:categorycode=" +
+      category;
+    _bndwOb2.charset = "UTF-8";
+    document.head.appendChild(_bndwOb2);
+  }
+
+  function BraindwGetFoundWords() {
+    var e = "",
+      t = document.body.innerText.trim();
+    t = t.replace(/(<([^>]+)>)/gi, " ").toLowerCase();
+    var r = "{wordstofind}".split(",");
+    for (i = 0; i < r.length; i++) -1 != t.indexOf(r[i]) && (e += r[i] + ",");
+    return e;
+  }
+
+  var bdwMobile = {
+    Android: function () {
+      return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function () {
+      return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function () {
+      return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function () {
+      return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function () {
+      return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function () {
+      return (
+        bdwMobile.Android() ||
+        bdwMobile.BlackBerry() ||
+        bdwMobile.iOS() ||
+        bdwMobile.Opera() ||
+        bdwMobile.Windows()
+      );
+    },
+  };
+
+  function bindEvent(element, eventName, eventHandler) {
+    try {
+      if (element.addEventListener)
+        element.addEventListener(eventName, eventHandler, false);
+      else if (element.attachEvent)
+        element.attachEvent("on" + eventName, eventHandler);
+    } catch (e) {}
+  }
+
+  function BraindwPushEventIframe(cat, eti, sku) {
+    try {
+      if (sku != "") eti = eti + "[" + sku + "]";
+      dataLayer.push({
+        event: "ga-braindw",
+        eventCategory: "ga-braindw",
+        eventAction: cat,
+        eventLabel: eti,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function AddToCartBraindwGond(url, sku, quantity) {
+    try {
+      let key = BraindwGetCookie("form_key");
+      let formData = new FormData();
+      formData.append("product", sku);
+      formData.append("item", sku);
+      formData.append("form_key", key);
+      formData.append("qty", quantity);
+      fetch(url, {
+        credentials: "include",
+        mode: "no-cors",
+        method: "POST",
+        body: formData,
+      })
+        .then((resp) => resp.text())
+        .then(function (resp) {
+          const eventCustomerData = new Event("reload_customer_data");
+          document.dispatchEvent(eventCustomerData);
+        })
+        .catch(function (ex) {
+          console.log(ex);
+        });
+    } catch (e) {}
+  }
+    //Extension Datalayer
+//Formato del objeto con un tiempo de vida
+function FormatWithTTL(productId, shelf, description, shelfname , sku, brand,price,position, ttl) {
+  const now = new Date();
+  var item = {
+      product: {
+          productId: productId,
+          description: description,
+          brand: brand,
+          sku: sku,
+          price:price,
+          position: position
+      },
+      shelf: shelf,
+      shelfname: shelfname,
+      dateCreated: now,
+      expiry: now.getTime() + ttl,
+  }
+  return item;
+}
+
+  //Chequea que no exista objeto repetido y si existe los elimina para pushear el visto por ultima vez
+  function AlreadyExists(Items, i) {
+    var filtered = Items.filter(function (item) {
+        return item.product.productId !== i.product.productId;
+    });
+    return filtered;
+  }
+
+  //funcion Onclick
+  function BdwDataLayer(key, productId, shelf, description, shelfname, sku, brand, position,price) {
+    if (productId === null || shelf === null || key === null) return 0;
+    const ttl = 7200000; //Equivale a un tiempo de vida de dos horas.
+    var item = FormatWithTTL(productId, shelf, description, shelfname,sku, brand, price, position, ttl);
+    var Items = JSON.parse(localStorage.getItem(key)) || [];
+    Items = AlreadyExists(Items, item);
+    Items.push(item);
+    localStorage.setItem(key, JSON.stringify(Items));
+  }
+  //chequea si un producto esta en el localstorage
+//chequea si un producto esta en el localstorage
+function inLocalStorage(productId) {
+  var key = "bdw-clicked-products";
+  var Items = JSON.parse(localStorage.getItem(key));
+  if (!Items) {
+      return null;
+  }
+  var i = Items.length;
+  while (i--) {
+      if (Items[i].product.productId === productId.toString()) {
+          return Items[i];
+      }
+  }
+  return null;
+}
+  //elimina si se se paso el tiempo de vida
+  function getWithExpiry() {
+    const now = new Date();
+    var key = "bdw-clicked-products";
+    var Items = localStorage.getItem(key);
+    if (!Items) {
+        return null;
+    }
+    Items = JSON.parse(Items);
+    for (var i = 0; i < Items.length; ++i) {
+        if (now.getTime() > Items[i].expiry) {
+            Items.shift();
+        } else {
+            break;
+        }
+    }
+    Items = JSON.stringify(Items);
+    localStorage.setItem(key, Items);
+  }
+
+function BraindwPushEventCarousel() {
+  try {
+    var impressions = [];
+    for (var i = 0; i < arrayGond.length; i++) {
+      let gondola = arrayGond[i];
+      window[gondola + "_DATA_EVENT"].forEach(function (item) {
+        item.list = gondola;
+        item.dimensionBraindw = "Braindw";
+        impressions.push(item);
+      });
+    }
+    console.log("impressions" + impressions);
+
+    dataLayer.push({
+      event: "viewBraindw",
+      ecommerce: {
+        currencyCode: "ARS",
+        impressions: impressions,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+
+//Enhanced Ecommerce
+function BraindwPushEventClickIframe(
+    productId,
+    cat,//Eventname
+    eti,//Descripcion
+    vitrina,//tittle
+    sku,
+    brand,
+    position,
+    price
+) {
+    try {
+        dataLayer.push({
+            event: "clickBraindw",
+            ecommerce: {
+                click: {
+                    actionField: {
+                        list: cat,
+                    },
+                    products: [{
+                        name: eti,
+                        //id: sku,
+                        id:productId,
+                        productId:productId,
+                        brand: brand,
+                        variant: undefined,
+                        vitrina: vitrina,
+                        position: position,
+                        price : price,
+                        "dimensionBraindw": "Braindw",
+                    }, ],
+                },
+            },
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+function BraindwPushEventBuyIframe(
+    productId,
+    cat,//Eventname
+    eti,//Descripcion
+    vitrina,//tittle
+    sku,
+    brand,
+    position,
+    price,
+    quantity
+) {
+  //debugger;
+    try {
+        var priceFormat = price;
+        dataLayer.push({
+            event: "addToCartBraindw",
+            ecommerce: {
+                currencyCode: "ARS",
+                add: {
+                    actionField: {
+                        list: cat,
+                    },
+                    products: [{
+                        id: productId,
+                        name: eti,
+                        price: price,
+                        quantity: quantity,
+                        //id: sku,
+                        //productId:productId,
+                        brand: brand,
+                        variant: undefined,
+                        position:position,
+                        vitrina:vitrina,
+                        "dimensionBraindw": "Braindw",
+                    }, ],
+                },
+            },
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+  function receiveMessage(event) {
+    try {
+      if (!event.origin.includes("braindw")) return;
+
+      if (event.data.includes("BraindwAddCartEvent")) {
+        var dataToSend = event.data.split("|")[1].split(",");
+        if (dataToSend.length > 1) {
+          AddToCartBraindwGond(dataToSend[0], dataToSend[1], dataToSend[2]);
+          BraindwCaptureRequest(dataToSend[3],1);
+          BraindwPushEventIframeAddToCar(dataToSend[5], dataToSend[4], dataToSend[1]);
+          Braindw_pushInfo();
+        }
+        return;
+      }
+
+
+      if (
+        event.data.includes("FullLoadedCarouselWithConfig") ||
+        event.data.includes("FullLoadedCarousel")
+      ) {
+        var dataReceived = event.data.split("|")[1];
+        if (event.data === "FullLoadedCarouselWithConfig") {
+          dataReceived = parseInt(dataReceived) + 50;
+        }
+
+        var elementReceived = document.querySelector(
+          'div[id="' + event.data.split("|")[2] + '"]'
+        );
+        elementReceived.style.overflow = "hidden";
+        elementReceived.style.position = "relative";
+        elementReceived.style.width = "100%";
+
+        if (elementReceived.querySelectorAll("iframe").length >= 0) {
+          elementReceived.style.height = dataReceived + "px";
+          console.log(event.data);
+          console.log(elementReceived);
+          elementReceived.style.display = "block";
+          elementReceived.style.visibility = "visible";
+          //clearTimeout(resetTimeEvent);
+          resetTimeEvent = setTimeout(() => { BraindwPushEventCarousel() }, 3000);
+        }
+
+        return;
+      }
+
+      if (event.data.includes("BraindwRemoveElements")) {
+        var sufixReceived = event.data.split("|")[1];
+        var bdwRemoveClasses = sufixReceived.includes("TEMPLATE_REMOVECLASS")
+          ? ""
+          : sufixReceived;
+        if (bdwRemoveClasses.length > 0) {
+          var elementsRemoves = document.querySelectorAll(bdwRemoveClasses);
+          elementsRemoves.forEach(function (item) {
+            item.parentNode.removeChild(item);
+          });
+        }
+        return;
+      }
+        if (event.data.includes("BraindwEventAnalyticsBuy")) {
+            var dataToSend = event.data.split("|")[1].split("_");
+            if (dataToSend[3] && dataToSend[4] && dataToSend[5] && dataToSend[6]) {
+                BraindwPushEventBuyIframe(
+                    dataToSend[2],//idArticulo
+                    dataToSend[3],//BDW-Home-Carrusel-2
+                    dataToSend[4],//item.Descripcion
+                    dataToSend[5],//shelfname
+                    dataToSend[6],//sku
+                    dataToSend[7],// marca vacio
+                    dataToSend[8],//posicion
+                    dataToSend[9],//precio
+                    dataToSend[10]);//cantidad
+            }
+
+        }
+      if (event.data.includes("BraindwClickRedirectParent")) {
+        var dataToSend = event.data.split("|")[1].split("_");
+        if(event.data.includes('imagen-banner')){
+          BraindwPushEventIframe(dataToSend[1],dataToSend[2],'');
+        }else{
+          BraindwPushEventIframe(dataToSend[3],dataToSend[4],dataToSend[6]);
+          BdwDataLayer(dataToSend[1],//bdw-clicked-products
+            dataToSend[2],//idArticulo
+            dataToSend[3],//BDW-Home-Carrusel-2
+            dataToSend[4],//item.Descripcion
+            dataToSend[5],//shelfname
+            dataToSend[6],//sku
+            dataToSend[7],// marca
+            dataToSend[8],//posicion
+            dataToSend[9]);//precio
+          BraindwPushEventClickIframe(
+              dataToSend[2],//idArticulo
+              dataToSend[3],//BDW-Home-Carrusel-2
+              dataToSend[4],//item.Descripcion
+              dataToSend[5],//shelfname
+              dataToSend[6],//sku
+              dataToSend[7],// marca vacio
+              dataToSend[8],//posicion
+              dataToSend[9]);//precio
+        }
+
+
+        window.location.href = dataToSend[0];
+        return;
+      }
+
+      if (event.data.includes("PushEventCarousel")) {
+        var dataToSend = event.data.split("|")[1].split("_");
+        arrayGond.push(dataToSend[0]);
+        arrayGond = Array.from(new Set(arrayGond));
+        window[dataToSend[0] + "_DATA_EVENT"] = JSON.parse(dataToSend[2]);
+      }
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  var _eventHandlers = {};
+  function addListener(node, event, handler, capture) {
+    if (!(node in _eventHandlers)) {
+      _eventHandlers[node] = {};
+    }
+    if (!(event in _eventHandlers[node])) {
+      _eventHandlers[node][event] = [];
+    }
+    _eventHandlers[node][event].push([handler, capture]);
+    node.addEventListener(event, handler, capture);
+  }
+
+  //lo que debe hacer cuando compra un producto desde ficha producto
+BraindwAddEvent("#product-addtocart-button", "click", function (e) {
+
+  var ficha=document.querySelectorAll(".product-info-stock-sku");
+  try {
+
+      if (ficha.length==1) {
+          var sku = "";
+          var quantity = "";
+          var checkedValue="";
+          var brand="";
+
+          var elemnt = document.querySelectorAll("#product-addtocart-button")[0];
+          if (elemnt !== null) {
+              quantity = 1;
+          }
+          brand=document.querySelector(".product-item-brand").innerText;
+          if(brand==null || brand==undefined){brand=""};
+          idcontainer = document.querySelector(".product-info-stock-sku");
+          sku=idcontainer.innerText.split(" ")[1];
+          if (sku !== "" && sku !== null && !isNaN(quantity)) {
+              var item = inLocalStorage(sku);
+              if (item !== null && item!= undefined) {
+                  BraindwPushEventBuyIframe(
+                    item.product.productId,
+                    item.shelf,
+                    item.product.description,
+                    item.shelfname,
+                    item.product.sku,
+                    brand,
+                    item.product.position,
+                    item.product.price,
+                    quantity
+                  );
+
+              }
+          }
+      }
+
+  } catch (e) {}
+});
+
+  function removeAllListeners(node, event) {
+    if (node in _eventHandlers) {
+      var handlers = _eventHandlers[node];
+      if (event in handlers) {
+        var eventHandlers = handlers[event];
+        for (var i = eventHandlers.length; i--; ) {
+          var handler = eventHandlers[i];
+          if (handler[0] === receiveMessage) {
+            node.removeEventListener(event, handler[0], handler[1]);
+          }
+        }
+      }
+    }
+  }
+
+  function formatstringBnw(s) {
+    var r = s.toLowerCase();
+    r = r.replace(new RegExp(/\s/g), "");
+    r = r.replace(new RegExp(/[àáâãäå]/g), "a");
+    r = r.replace(new RegExp(/[èéêë]/g), "e");
+    r = r.replace(new RegExp(/[ìíîï]/g), "i");
+    r = r.replace(new RegExp(/ñ/g), "n");
+    r = r.replace(new RegExp(/[òóôõö]/g), "o");
+    r = r.replace(new RegExp(/[ùúûü]/g), "u");
+
+    return r;
+  }
+
+  function BraindwGetSucCookie() {
+    return "";
+  }
+
+  function braindw_getSessionDate() {
+    let result = null;
+    try {
+      let SalesChannel = BraindwGetSucCookie();
+      result = {
+        SalesChannel: SalesChannel,
+      };
+    } catch (e) {
+      console.log("braindw_getSessionDate error ", e);
+    }
+    return result;
+  }
+
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  function braindwGetUrlParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results === null
+      ? ""
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  function bdwIsEmpty(obj) {
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        return false;
+      }
+    }
+
+    return JSON.stringify(obj) === JSON.stringify({});
+  }
+
+  function Braindw_getCatOpened(cart) {
+      let e = null;
+      var items = [];
+      if(!cart || cart.items.length === 0) return e;
+
+      var data = cart;
+      if(data != undefined){
+          for (var i = 0; i < data.items.length; i++) {
+              items.push({
+                  ProductTitle: data.items[i].product_name,
+                  ProductCode: data.items[i].product_sku,
+                  ProductUrlImage: data.items[i].product_image.src,
+                  ProductQuantity: data.items[i].qty,
+                  ProductQuantityDetails: '',
+                  ProductPrice: data.items[i].product_price_value,
+                  PriceTotal: parseFloat(data.items[i].product_price_value) * data.items[i].qty,
+                  Event: "Load"
+              })
+          }
+      }
+
+      e = {
+          CartNumber: '',
+          BranchOffice: BraindwGetSucCookie(),
+          Items: items
+      }
+
+      return e;
+  }
+
+  function braindw_getSearch() {
+      let result=null;
+      try {
+          var braindw_url=document.URL;
+          if(braindw_url.toLowerCase().indexOf("/catalogsearch/result")===-1) return result;
+          result={ searchterm: braindwGetUrlParameter("?q"), };
+      } catch (e) { console.log(e); }
+
+      return result;
+  }
+
+  function Braindw_getCartClosed() {
+      return "";
+  }
+
+  function Braindw_pushInfo() {
+      var bdwCustomer = JSON.parse(localStorage.getItem("mage-cache-storage"));
+      if(braindw_getSearch === null){
+        if (bdwIsEmpty(bdwCustomer) || bdwCustomer.cart.items.length === 0) {
+            return;
+        }
+      }
+
+      var emailGuest = localStorage.getItem("bdw_email");
+      let e = {
+          sessionDate: braindw_getSessionDate()
+      };
+
+      let _searchTerm = braindw_getSearch();
+      if (_searchTerm) {
+          e.search = _searchTerm;
+      };
+
+      let a = Braindw_getCatOpened(bdwCustomer.cart);
+      a ? e.cartOpened = a : (a = Braindw_getCartClosed()) && (e.cartClosed = a);
+
+      braindw_sendPersistency(e, emailGuest);
+  }
+
+  function BraindwvalidateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+  }
+
+  function BraindwCookiePush(email) {
+      if (BraindwvalidateEmail(email)) {
+          var bdwEmailStorage = localStorage.getItem('bdw_email');
+          if(bdwEmailStorage && bdwEmailStorage === email){
+              return;
+          }
+          try {
+              fetch(_URLBNDW + '/tracking/SetCookiesNdway?email=' + email + '&company=clubdebeneficios_produccion', {
+                      credentials: "include",
+                      mode: 'no-cors',
+                      method: 'POST',
+                  })
+                  .then(function(resp) {
+                      return resp.text();
+                  })
+                  .then(function(data) {
+                      localStorage.setItem('bdw_email', email);
+                      return false;
+                  })
+                  .catch(function(ex) {
+                      console.log(ex);
+                  });
+          } catch (e) {}
+      }
+  }
+
+  function BraindwCaptureRequest(url, iscart){
+      fetch(url)
+      .then((resp) => resp.text())
+      .then(function (data) {
+        var elt = document.createElement("body");
+        elt.innerHTML = data;
+        BraindwCaptureProduct(iscart, elt);
+      })
+      .catch(function (ex) {
+        console.log(ex);
+      });
+  }
+
+  function BdwInterceptorRequest(url, method, callback) {
+    var __XHROpenFn = window.XMLHttpRequest.prototype.open;
+    window.XMLHttpRequest.prototype.open = function (
+      method,
+      url,
+      async,
+      user,
+      password
+    ) {
+      var event = new CustomEvent("request.open", {
+        detail: {
+          xhr: this,
+          request: this,
+          method: method,
+          url: url,
+          async: async,
+        },
+      });
+      window.dispatchEvent(event);
+      return __XHROpenFn.apply(this, arguments);
+    };
+
+    window.addEventListener("request.open", handleXHR);
+    function handleXHR(ev) {
+      if (
+        ev.detail.method.toLowerCase() == method &&
+        ev.detail.url.indexOf(url) > -1
+      ) {
+        ev.detail.xhr.onload = function () {
+          if (ev.detail.xhr.readyState === 4 && ev.detail.xhr.status === 200) {
+            callback(ev.detail.xhr.responseText);
+          } else {
+            console.error(xhr.statusText);
+          }
+        };
+      }
+    }
+  }
+
+  BdwInterceptorRequest("checkout/sidebar/removeItem/", "post", function (data) {
+      setTimeout(function(e){
+          Braindw_pushInfo();
+      },2000);
+  });
+
+  var _URLBNDW = "";
+  var isAttached = typeof isAttached !== "undefined" ? isAttached : false;
+  var _HASHBNDW = "clubdebeneficios_produccion_jknky";
+  var arrayGond = [];
+  var resetTimeEvent = null;
+  BraindwDomReady(function () {
+    try {
+      console.log("[Braindw] [begin]");
+      _URLBNDW = window.location.protocol + "//s.braindw.com";
+      BraindwLoadScript(document, "script", escape(window.location));
+      window.onpopstate = function (e) {
+        BraindwLoadScript(document, "script", escape(document.location));
+      };
+
+      if (!isAttached) {
+        localStorage.setItem("currentPage", location.href);
+        addListener(window, "message", receiveMessage, false);
+        isAttached = true;
+      }
+
+      BraindwAddEvent(".tocart", "click", function (e) {
+        if (document.querySelectorAll(".product.attribute.sku .value").length > 0) {
+          return;
+        }
+
+        var urlProduct = e.currentTarget
+          .closest(".product-item-info")
+          .querySelector(".product-item-photo")
+          .getAttribute("href");
+
+        BraindwCaptureRequest(urlProduct, 1);
+        Braindw_pushInfo();
+      });
+
+      Braindw_pushInfo();
+
+      setTimeout(function(){
+          if (document.URL.indexOf('/usuario/ingresar') > -1) {
+              BraindwAddEvent(".action-login", "click", function (e) {
+                  var email = document.querySelector('#customer-email').value;
+                  if (!email) { return; }
+                  BraindwCookiePush(email);
+              });
+          }
+      }, 1500);
+
+      getWithExpiry();
+
+    } catch (e) {
+      console.log("[Braindw] [error]");
+    }
+  });
+
+
+  var BraindwDomReady = function (callback) {
+    document.readyState === "interactive" || document.readyState === "complete"
+      ? callback()
+      : document.addEventListener("DOMContentLoaded", callback);
+  };
+
+  function Braindw_getProduct(data) {
+    let e = null;
+    if (data) {
+      var s = {},
+        t = braindw_getSessionDate();
+      t && (s.sessionDate = t);
+
+      var prod = data;
+      e = {
+        ProductCode: prod.codeproduct,
+        Title: prod.title,
+        PriceOnline: prod.price,
+        Brand: prod.brand,
+        Category: prod.categorycode,
+        CategoryCode: prod.categorycode,
+        UrlImage: prod.image,
+        UrlProduct: document.URL,
+        BranchOffice: BraindwGetSucCookie(),
+      };
+      s.product = e;
+      braindw_sendPersistency(s);
+    }
+  }
+
+  function Braindw_pushCategory() {
+    try {
+      var categorycode = location.pathname
+        .split("/")
+        [location.pathname.split("/").length - 1].replace(".html", "");
+      var e = {
+        Title: categorycode.replace("-", " "),
+        CategoryCode: categorycode,
+      };
+
+      var s = {},
+        t = braindw_getSessionDate();
+      t && (s.sessionDate = t);
+      s.category = e;
+      braindw_sendPersistency(s);
+    } catch (e) {}
+  }
+
+  function braindw_sendPersistency(e, emailGuest) {
+    let n = {
+      emailguest: emailGuest != undefined ? emailGuest : "",
+      dataset: encodeURI(JSON.stringify(e)),
+      page: "",
+      url: window.location.href.split("?")[0],
+      urlb:
+        _URLBNDW +
+        "/Script/braindw/clubdebeneficios_produccion_jknky?hs=Thu Dec 04 2019 20:49:26 GMT-0300 (hora estándar de Argentina)",
+      BranchOffice: "",
+    };
+    fetch("https://p.braindw.com/Api/Data/Capture", {
+      method: "POST",
+      body: JSON.stringify(n),
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then(function (data) {})
+      .catch(function (ex) {
+        console.log(ex);
+      });
+  }
+
+  function BraindwGetCookie(key) {
+    var BraindwCa = decodeURIComponent(document.cookie).split(";");
+    for (var bnwi = 0; bnwi < BraindwCa.length; bnwi++) {
+      if (BraindwCa[bnwi].indexOf(key) > -1) {
+        return BraindwCa[bnwi].split("=")[1];
+      }
+    }
+    return "";
+  }
+
+  function BraindwAddEvent(e, ev, callback) {
+    var elements = document.querySelectorAll(e);
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].addEventListener(ev, callback);
+    }
+  }
+
+  function BraindwLoadScript(e, t, r) {
+    var i = ($guadex = function (e) {
+        i._.push(e);
+      }),
+      a = BraindwGetSucCookie(),
+      o = (i.s = e.createElement(t)),
+      n = e.getElementsByTagName(t)[0];
+    (i.set = function (e) {
+      i.set._.push(e);
+    }),
+      (i._ = []),
+      (i.set._ = []),
+      (o.async = !0),
+      o.setAttribute("charset", "utf-8"),
+      (o.src =
+        _URLBNDW +
+        "/tracking/track?HASH=clubdebeneficios_produccion_jknky&branchOffice=" +
+        a +
+        "&wordsfound=" +
+        BraindwGetFoundWords() +
+        "&buyer={CLIENT.BUYER}&name=&lastname=&gender=&country=&state=&city=&email=&u=" +
+        escape(window.location) +
+        "&hs=" +
+        new Date()),
+      (i.t = +new Date()),
+      (o.type = "text/javascript"),
+      n.parentNode.insertBefore(o, n);
+  }
+
+  function BraindwBuildCartItem(url, sku, quantity) {}
+
+  function BraindwCaptureProduct(isCart, element) {
+    if (!element) {
+      element = document;
+    }
+    var data = {};
+    data.title =
+      element.querySelectorAll(".page-title span").length > 0
+        ? element.querySelector(".page-title span").innerText.trim()
+        : "";
+    data.price =
+      element.querySelectorAll(".price-final_price .price").length > 0
+        ? element.querySelector(".price-final_price .price").innerText.trim()
+        : "";
+    data.oldPrice =
+      element.querySelectorAll(".old-price .price").length > 0
+        ? element.querySelector(".old-price .price").innerText.trim()
+        : "";
+    data.onlinePrice = data.price;
+    data.categoriescodes = element.querySelectorAll("#txtCategoriesPath")[0].value;
+    //data.categoriescodes =
+    //  element.querySelectorAll("#txtCategoriesPath")[0].value.split("/")[0] + ",";
+    //data.categoriescodes += element.querySelectorAll(
+    //  "#txtCategoriesPath"
+    //)[0].value;
+    data.codeproduct =
+      element.querySelectorAll(".product.attribute.sku .value").length > 0
+        ? element
+            .querySelector(".product.attribute.sku .value")
+            .innerText.trim()
+            .toLocaleLowerCase()
+            .replace(/ /g, "-")
+        : "";
+    data.categorycode =
+      data.categoriescodes.split(",").length > 0
+        ? data.categoriescodes[data.categoriescodes.length - 1]
+        : "";
+    data.brand =
+      element.querySelectorAll(".product-item-brand span").length > 0
+        ? element.querySelector(".product-item-brand span").innerText.trim()
+        : "";
+    data.image =
+      element.querySelectorAll(".magnifier-preview img").length > 0
+        ? element.querySelector(".magnifier-preview img").getAttribute("src")
+        : geBdwtMeta('og:image');
+    if (data.price == data.oldPrice) data.oldPrice = "";
+
+
+
+    var bdwListOfObjects = []
+
+
+    for(var iBdw=0; iBdw<data.categoriescodes.split(',').length;iBdw++)
+    {
+
+      var bdwCategoryValue = data.categoriescodes.split(',')[iBdw];
+      if(bdwCategoryValue!='' && !bdwListOfObjects.includes(bdwCategoryValue)){
+        bdwListOfObjects.push(bdwCategoryValue);
+      }
+      for(var iBdw2=0;iBdw2<bdwCategoryValue.split('/').length;iBdw2++ )
+      {
+        var bdwStrCategory = bdwCategoryValue.split('/')[iBdw2];
+        if(bdwStrCategory!='' && !bdwListOfObjects.includes(bdwStrCategory)){
+          bdwListOfObjects.push(bdwStrCategory);
+        }
+      }
+    }
+
+    data.categoriescodes = bdwListOfObjects.join(',') ;
+
+
+
+    var urlParameters =
+      "og:title=" +
+      encodeURIComponent(data.title) +
+      "&og:image=" +
+      encodeURIComponent(data.image) +
+      "&og:url=" +
+      document.URL.replace("#", "") +
+      "&og:categoriescodes=" +
+      data.categoriescodes +
+      "&og:codeproduct=" +
+      data.codeproduct +
+      "&og:brand=" +
+      data.brand +
+      "&og:categorycode=" +
+      data.categorycode +
+      "&og:price=" +
+      data.price +
+      "&og:priceold=" +
+      data.oldPrice +
+      "&og:og:pricesale=" +
+      data.onlinePrice +
+      "&iscart=" +
+      isCart;
+
+    var _bndwOb2 = document.createElement("script");
+    _bndwOb2.async = true;
+    _bndwOb2.src = _URLBNDW + "/tracking/capture?HASH=clubdebeneficios_produccion_jknky&" + urlParameters;
+    _bndwOb2.charset = "UTF-8";
+    document.head.appendChild(_bndwOb2);
+
+    if (!isCart) {
+      Braindw_getProduct(data);
+      BraindwGetCrossCustoms(data.categoriescodes);
+      return;
+    }
+  }
+
+  function BraindwCaptureCategory(category) {
+    localStorage.setItem("bdw_last_category", category);
+    var _bndwOb2 = document.createElement("script");
+    _bndwOb2.async = true;
+    _bndwOb2.src =
+      _URLBNDW +
+      "/tracking/capture?HASH=clubdebeneficios_produccion_jknky&iscategory=true&og:categorycode=" +
+      category;
+    _bndwOb2.charset = "UTF-8";
+    document.head.appendChild(_bndwOb2);
+  }
+
+  //IMPLEMENTACION LOCALSTORAGE
+  let localStorageNames = {
+    ultimasCategoriasVisitadas: "bdwUltimasCategoriasVisitadas",
+    productosVistos: "bdw_lasts_skus"
+  };
+
+  const addSkuLS = (sku, action) => {
+    const storageName =
+      action == "view"
+        ? localStorageNames.productosVistos
+        : localStorageNames.productosAgregados;
+    let currentData = localStorage.getItem(storageName);
+    if (currentData !== null) currentData = JSON.parse(currentData);
+    if (currentData === null) currentData = [];
+    if (currentData.includes(sku))
+      currentData = currentData.filter((i) => i != sku);
+    currentData.unshift(sku);
+    currentData = currentData.slice(0, 10);
+    localStorage.setItem(storageName, JSON.stringify(currentData));
+  };
+
+  function BraindwGetFoundWords() {
+    var e = "",
+      t = document.body.innerText.trim();
+    t = t.replace(/(<([^>]+)>)/gi, " ").toLowerCase();
+    var r = "{wordstofind}".split(",");
+    for (i = 0; i < r.length; i++) -1 != t.indexOf(r[i]) && (e += r[i] + ",");
+    return e;
+  }
+
+  var bdwMobile = {
+    Android: function () {
+      return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function () {
+      return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function () {
+      return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function () {
+      return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function () {
+      return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function () {
+      return (
+        bdwMobile.Android() ||
+        bdwMobile.BlackBerry() ||
+        bdwMobile.iOS() ||
+        bdwMobile.Opera() ||
+        bdwMobile.Windows()
+      );
+    },
+  };
+
+  function bindEvent(element, eventName, eventHandler) {
+    try {
+      if (element.addEventListener)
+        element.addEventListener(eventName, eventHandler, false);
+      else if (element.attachEvent)
+        element.attachEvent("on" + eventName, eventHandler);
+    } catch (e) {}
+  }
+
+  function BraindwPushEventIframe(cat, eti, sku) {
+    try {
+      if (sku != "") eti = eti + "[" + sku + "]";
+      dataLayer.push({
+        event: "ga-braindw",
+        eventCategory: "ga-braindw",
+        eventAction: cat,
+        eventLabel: eti,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+
+  function BraindwPushEventIframeAddToCar(cat, eti, sku) {
+    try {
+      if (sku != "") eti = eti + "[" + sku + "]";
+      dataLayer.push({
+        event: "ga-braindw",
+        eventCategory: "ga-braindw-addtocart",
+        eventAction: cat,
+        eventLabel: eti,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function AddToCartBraindwGond(url, sku, quantity) {
+    try {
+      let key = BraindwGetCookie("form_key");
+      let formData = new FormData();
+      formData.append("product", sku);
+      formData.append("item", sku);
+      formData.append("form_key", key);
+      formData.append("qty", quantity);
+      fetch(url, {
+        credentials: "include",
+        mode: "no-cors",
+        method: "POST",
+        body: formData,
+      })
+        .then((resp) => resp.text())
+        .then(function (resp) {
+          const eventCustomerData = new Event("reload_customer_data");
+          document.dispatchEvent(eventCustomerData);
+        })
+        .catch(function (ex) {
+          console.log(ex);
+        });
+    } catch (e) {}
+  }
+
+  var _eventHandlers = {};
+  function addListener(node, event, handler, capture) {
+    if (!(node in _eventHandlers)) {
+      _eventHandlers[node] = {};
+    }
+    if (!(event in _eventHandlers[node])) {
+      _eventHandlers[node][event] = [];
+    }
+    _eventHandlers[node][event].push([handler, capture]);
+    node.addEventListener(event, handler, capture);
+  }
+
+  function removeAllListeners(node, event) {
+    if (node in _eventHandlers) {
+      var handlers = _eventHandlers[node];
+      if (event in handlers) {
+        var eventHandlers = handlers[event];
+        for (var i = eventHandlers.length; i--; ) {
+          var handler = eventHandlers[i];
+          if (handler[0] === receiveMessage) {
+            node.removeEventListener(event, handler[0], handler[1]);
+          }
+        }
+      }
+    }
+  }
+
+  function formatstringBnw(s) {
+    var r = s.toLowerCase();
+    r = r.replace(new RegExp(/\s/g), "");
+    r = r.replace(new RegExp(/[àáâãäå]/g), "a");
+    r = r.replace(new RegExp(/[èéêë]/g), "e");
+    r = r.replace(new RegExp(/[ìíîï]/g), "i");
+    r = r.replace(new RegExp(/ñ/g), "n");
+    r = r.replace(new RegExp(/[òóôõö]/g), "o");
+    r = r.replace(new RegExp(/[ùúûü]/g), "u");
+
+    return r;
+  }
+
+  function BraindwGetSucCookie() {
+    return "";
+  }
+
+  function braindw_getSessionDate() {
+    let result = null;
+    try {
+      let SalesChannel = BraindwGetSucCookie();
+      result = {
+        SalesChannel: SalesChannel,
+      };
+    } catch (e) {
+      console.log("braindw_getSessionDate error ", e);
+    }
+    return result;
+  }
+
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  function braindwGetUrlParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results === null
+      ? ""
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  function bdwIsEmpty(obj) {
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        return false;
+      }
+    }
+
+    return JSON.stringify(obj) === JSON.stringify({});
+  }
+
+  function Braindw_getCatOpened(cart) {
+      let e = null;
+      var items = [];
+      if(!cart || cart.items.length === 0) return e;
+
+      var data = cart;
+      if(data != undefined){
+          for (var i = 0; i < data.items.length; i++) {
+              items.push({
+                  ProductTitle: data.items[i].product_name,
+                  ProductCode: data.items[i].product_sku,
+                  ProductUrlImage: data.items[i].product_image.src,
+                  ProductQuantity: data.items[i].qty,
+                  ProductQuantityDetails: '',
+                  ProductPrice: data.items[i].product_price_value,
+                  PriceTotal: parseFloat(data.items[i].product_price_value) * data.items[i].qty,
+                  Event: "Load"
+              })
+          }
+      }
+
+      e = {
+          CartNumber: '',
+          BranchOffice: BraindwGetSucCookie(),
+          Items: items
+      }
+
+      return e;
+  }
+
+  /*function Braindw_pushInfo() {
+      var bdwCustomer = JSON.parse(localStorage.getItem("mage-cache-storage"));
+      if (bdwIsEmpty(bdwCustomer) || bdwCustomer.cart.items.length === 0) {
+          return;
+      }
+
+      var emailGuest = localStorage.getItem("bdw_email");
+      let e = {
+          sessionDate: braindw_getSessionDate()
+      };
+
+      let a = Braindw_getCatOpened(bdwCustomer.cart);
+      a ? e.cartOpened = a : (a = Braindw_getCartClosed()) && (e.cartClosed = a);
+
+      braindw_sendPersistency(e, emailGuest);
+  }*/
+
+  function BraindwvalidateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+  }
+
+  function BraindwCookiePush(email) {
+      if (BraindwvalidateEmail(email)) {
+          var bdwEmailStorage = localStorage.getItem('bdw_email');
+          if(bdwEmailStorage && bdwEmailStorage === email){
+              return;
+          }
+          try {
+              fetch(_URLBNDW + '/tracking/SetCookiesNdway?email=' + email + '&company=clubdebeneficios_produccion', {
+                      credentials: "include",
+                      mode: 'no-cors',
+                      method: 'POST',
+                  })
+                  .then(function(resp) {
+                      return resp.text();
+                  })
+                  .then(function(data) {
+                      localStorage.setItem('bdw_email', email);
+                      return false;
+                  })
+                  .catch(function(ex) {
+                      console.log(ex);
+                  });
+          } catch (e) {}
+      }
+  }
+
+  function BraindwCaptureRequest(url, iscart){
+      fetch(url)
+      .then((resp) => resp.text())
+      .then(function (data) {
+        var elt = document.createElement("body");
+        elt.innerHTML = data;
+        BraindwCaptureProduct(iscart, elt);
+      })
+      .catch(function (ex) {
+        console.log(ex);
+      });
+  }
+
+  function BdwInterceptorRequest(url, method, callback) {
+    var __XHROpenFn = window.XMLHttpRequest.prototype.open;
+    window.XMLHttpRequest.prototype.open = function (
+      method,
+      url,
+      async,
+      user,
+      password
+    ) {
+      var event = new CustomEvent("request.open", {
+        detail: {
+          xhr: this,
+          request: this,
+          method: method,
+          url: url,
+          async: async,
+        },
+      });
+      window.dispatchEvent(event);
+      return __XHROpenFn.apply(this, arguments);
+    };
+
+    window.addEventListener("request.open", handleXHR);
+    function handleXHR(ev) {
+      if (
+        ev.detail.method.toLowerCase() == method &&
+        ev.detail.url.indexOf(url) > -1
+      ) {
+        ev.detail.xhr.onload = function () {
+          if (ev.detail.xhr.readyState === 4 && ev.detail.xhr.status === 200) {
+            callback(ev.detail.xhr.responseText);
+          } else {
+            console.error(xhr.statusText);
+          }
+        };
+      }
+    }
+  }
+
+  BdwInterceptorRequest("checkout/sidebar/removeItem/", "post", function (data) {
+      setTimeout(function(e){
+          Braindw_pushInfo();
+      },2000);
+  });
+
+
+  function ultimosNavegados() {
+    var _URLSTATIC = window.location.protocol + "//static-s.braindw.com";
+    //verifica estar en Home
+    let isHome = new RegExp(/.*?:\/\/(.*)clubdebeneficios.com($|\/|\/\?(.*))$/);
+    if (isHome.test(document.URL)) {
+      let lastCategory = localStorage.getItem("bdw_last_category");
+      if (
+        lastCategory !== null &&
+        lastCategory !== undefined &&
+        lastCategory !== ""
+      ) {
+        var _bndwOb2 = document.createElement("script");
+        _bndwOb2.async = true;
+        _bndwOb2.src =
+        _URLSTATIC +
+          "/tracking/track?HASH=clubdebeneficios_produccion_jknky&wordsfound=,&buyer={CLIENT.BUYER}&name=&lastname=&gender=&branchOffice=" +
+          BraindwGetSucCookie() +
+          "&country=&state=&city=&minify=1&email=&u=home.braindw.com/lastcategory/" +
+          1 +
+          "/" +
+          lastCategory;
+        _bndwOb2.charset = "UTF-8";
+        document.head.appendChild(_bndwOb2);
+      }
+
+      let lastSkus = localStorage.getItem("bdw_lasts_skus");
+      if (lastSkus !== null && lastSkus !== undefined && lastSkus !== "") {
+        var _bndwOb3 = document.createElement("script");
+        _bndwOb3.async = true;
+        _bndwOb3.src =
+        _URLSTATIC +
+          "/tracking/track?HASH=clubdebeneficios_produccion_jknky&wordsfound=,&buyer={CLIENT.BUYER}&name=&lastname=&gender=&branchOffice=" +
+          BraindwGetSucCookie() +
+          "&country=&state=&city=&minify=1&email=&u=home.braindw.com/lastproducts/" +
+          1 +
+          "/" +
+          lastSkus;
+        _bndwOb3.charset = "UTF-8";
+        document.head.appendChild(_bndwOb3);
+      }
+    }
+  }
+
+  var _URLBNDW = "";
+  var _URLSTATIC = "";
+  var isAttached = typeof isAttached !== "undefined" ? isAttached : false;
+  var _HASHBNDW = "clubdebeneficios_produccion_jknky";
+  BraindwDomReady(function () {
+    try {
+      console.log("[Braindw] [begin]");
+      _URLSTATIC = window.location.protocol + "//static-s.braindw.com";
+      _URLBNDW = window.location.protocol + "//s.braindw.com";
+      BraindwLoadScript(document, "script", escape(window.location));
+      window.onpopstate = function (e) {
+        BraindwLoadScript(document, "script", escape(document.location));
+      };
+
+      if (!isAttached) {
+        localStorage.setItem("currentPage", location.href);
+        addListener(window, "message", receiveMessage, false);
+        isAttached = true;
+      }
+
+      BraindwAddEvent(".tocart", "click", function (e) {
+        if (document.querySelectorAll(".product.attribute.sku .value").length > 0) {
+          return;
+        }
+
+        var urlProduct = e.currentTarget
+          .closest(".product-item-info")
+          .querySelector(".product-item-photo")
+          .getAttribute("href");
+
+        BraindwCaptureRequest(urlProduct, 1);
+        Braindw_pushInfo();
+      });
+
+      Braindw_pushInfo();
+
+      try{
+        var skuProducto = undefined;
+        if(document.querySelector('.product-info-stock-sku>div>div') !== null){
+          skuProducto = document.querySelector('.product-info-stock-sku>div>div').innerText;
+        }
+      }catch(e){
+          console.log(e);
+      }
+      if(skuProducto!= undefined){
+        addSkuLS(skuProducto, "view");
+      }
+
+      setTimeout( function(){
+        try{
+          var codCat = undefined;
+          if(document.getElementById('txtCategoriesPath') !== null){
+            codCat = document.getElementById('txtCategoriesPath').value;
+          }
+
+          }catch(e){
+              console.log(e);
+          }
+          if(codCat != undefined){
+            codCat = codCat.split('/',[-1]);
+            codCat = codCat[codCat.length -1];
+            if(codCat.includes(',')){
+                codCat = codCat.split(',',-1);
+                codCat = codCat[0];
+            }
+            localStorage.setItem("bdw_last_category", codCat);
+          }
+      }, 1500);
+
+
+    ultimosNavegados();
+
+      setTimeout(function(){
+          if (document.URL.indexOf('/usuario/ingresar') > -1) {
+              BraindwAddEvent(".action-login", "click", function (e) {
+                  var email = document.querySelector('#customer-email').value;
+                  if (!email) { return; }
+                  BraindwCookiePush(email);
+              });
+          }
+      }, 1500);
+
+
+    } catch (e) {
+      console.log("[Braindw] [error]");
+    }
+  });
+
+ try{ console.log('[abtest 0] [usertest ]'); } catch(e) {console.log('error load abtest log')}
 </script>
 </body>
 </html>
