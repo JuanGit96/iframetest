@@ -617,8 +617,8 @@ window.addEventListener('message', function (event) {
     removedProducts = logProductsCart.filter(x => !logCurrentProductsCart.includes(x))
     console.log("productos removidos!!!", removedProducts);
     for (var key in removedProducts) {
-        $("#agregar_" + removedProducts[key]).css("display","none");
-        $("#actualizar_remover_" + removedProducts[key]).css("display","block");
+        $("#agregar_" + removedProducts[key]).css("display","block");
+        $("#actualizar_remover_" + removedProducts[key]).css("display","none");
     }
 }, false);
 /*end summa*/
