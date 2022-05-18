@@ -601,7 +601,7 @@ window.addEventListener('message', function (event) {
 $(document).on('submit','form',function(e){
     e.preventDefault();
     console.log("enviando antes de submit...");
-    window.parent.postMessage({"product": $(this).attr("id"), "item" }, '*');
+    //window.parent.postMessage({"product": $(this).attr("id"), "item" }, '*');
     //var form = $(this);
     //var formData = new FormData(form[0]);
 
